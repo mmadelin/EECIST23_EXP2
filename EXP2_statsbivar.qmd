@@ -1,0 +1,1815 @@
+---
+title: "."
+subtitle: " "
+author: " "
+license: MIT
+title-slide-attributes:
+  data-background-image: img/template_diapo_EECIST_Page1.png
+  data-background-size: cover
+format: 
+  revealjs:      
+    slide-number: c/t
+    # footer: "EE-CIST23 Méthodes et outils des sciences des territoires - Ouidah (Bénin)"
+    logo: img/eeCist_bandeau.png
+    theme: [simple, css/styles.scss]
+    # smaller: true 
+    scrollable: true
+    multiplex: true
+    code-line-numbers: true
+    code-copy: true
+    code-tools: true
+    # code-block-bg: true   
+    # code-block-border-left: "#9b2063" 
+    highlight-style: breeze
+
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+
+# Introduction{background-image="img/template_diapo_EECIST_partie.png" background-size="cover"}
+
+```{r }
+#| echo: false
+
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(kableExtra)
+library(leaflet)
+
+
+```
+
+## Les objectifs du cours 
+
+- découvrir ou approfondir les statistiques bivariées (à replacer entre univariées et multivariées)
+
+- savoir quelles méthodes choisir en fonction de la question et des données
+
+- les appliquer sous R (ou autres ?)
+
+- comprendre l'importance des écarts au modèle
+
+<br>
+
+. . .
+
+Objectifs lors de l'atelier de l'EE2022 : 
+
+![](img/Obj_EE2022.png){fig-align="left" width="500" .imgborder}
+
+
+## Les conditions envisagées
+
+- entre 10h et 60h
+
+- cours théorique s'appuyant sur des exemples d'application
+
+- séances pratiques sous R
+
+. . . 
+
+Lors de l'atelier de l'EE2022 :
+
+![](img/Timing_EE2022.png){fig-align="left" width="400" .imgborder}
+
+
+# Contenu du cours <br> [à moduler selon le temps dédié au cours]{style="font-size:36px"}{background-image="img/template_diapo_EECIST_partie.png" background-size="cover"}
+
+
+## Les statistiques bivariées 
+
+```{r echo=FALSE}
+library(knitr)
+library(dplyr)
+library(kableExtra)
+
+wb <- read.csv2(file = "data/wb_don_1990_2019.csv")
+wb <- wb %>% filter(date == 1990) %>% 
+  filter(country %in% c("Angola", "Senegal", "France", "Chili", "India")) %>% 
+  mutate(CO2_hab = CO2/POP, GDP_hab = GDP/POP) %>% select(country, date, longitude, latitude, region, income_level, CO2_hab, GDP_hab)
+
+head(wb) %>%
+  kable("html") %>%
+  kable_styling(font_size = 18)
+
+```
+
+::: {.source}
+Source : Banque Mondiale, 1990
+:::
+
+## Les statistiques bivariées 
+
+```{r echo=FALSE}
+head(wb) %>%
+  kable("html") %>%
+  kable_styling(font_size = 18) %>% 
+  column_spec(8, color = "white", background ="#333399") 
+
+
+```
+
+
+
+::: {.source}
+Source : Banque Mondiale, 1990
+:::
+
+Statistiques [univariées]{style="color:#333399;"}
+
+## Les statistiques bivariées
+
+```{r echo=FALSE}
+head(wb) %>%
+  kable("html") %>%
+  kable_styling(font_size = 18) %>% 
+  column_spec(c(7,8), color = "white", background ="#990033") 
+
+```
+
+::: {.source}
+Source : Banque Mondiale, 1990
+:::
+
+Statistiques univariées &emsp; &#11106; &emsp; [bivariées]{style="color:#990033;font-weight:bold"}
+
+## Les statistiques bivariées
+
+```{r echo=FALSE}
+head(wb) %>%
+  kable("html") %>%
+  kable_styling(font_size = 18) %>% 
+  column_spec(c(6,7), color = "white", background ="#990033") 
+
+```
+
+::: {.source}
+Source : Banque Mondiale, 1990
+:::
+
+Statistiques univariées &emsp; &#11106; &emsp; [bivariées]{style="color:#990033;font-weight:bold"}
+
+## Les statistiques bivariées
+
+```{r echo=FALSE}
+head(wb) %>%
+  kable("html") %>%
+  kable_styling(font_size = 18) %>% 
+  column_spec(c(6,7), color = "white", background ="#990033") 
+
+```
+
+::: {.source}
+Source : Banque Mondiale, 1990
+:::
+
+Statistiques univariées &emsp; &#11106; &emsp; [bivariées]{style="color:#990033;font-weight:bold"}
+
+<br>
+
+Objectifs :
+
+-   comparaison de deux variables
+
+-   relation entre deux variables
+
+
+## Les statistiques bivariées
+
+```{r echo=FALSE}
+head(wb) %>%
+  kable("html") %>%
+  kable_styling(font_size = 18) 
+
+```
+
+::: {.source}
+Source : Banque Mondiale, 1990
+:::
+
+::: columns
+::: {.column width="55%"}
+![](img/TypeData_CAR1.png){fig-align="center" width="500"}
+
+::: {.source}
+Source : Cours de CAR1, Cartographie thématique & Sémiologie Graphique, EE2023
+:::
+
+:::
+
+::: {.column width="45%" .fragment}
+
+::: {.callout-tip icon="false"}
+## Quizz
+En imaginant un tableau élémentaire avec nous comme individus (une ligne par personne), donnez un exemple 
+
+de variable qualitative ? 
+
+de variable quantitative absolue (de stock) ? 
+
+de variable quantitative relative ? 
+
+de variable qualitative ordinale ?   
+:::
+
+:::
+:::
+
+# Analyse d'une relation {background-color="#CAF2F5"}
+
+
+## Différentes analyses 2 à 2, selon les types de variables 
+
+
+::: {.fragment fragment-index=1}
+-   [Relation entre deux variables quantitatives Qn-Qn]{style="font-weight:bold; font-size:1.2em"}
+
+```{r echo=FALSE}
+head(wb,3) %>%
+  kable("html") %>%
+  kable_styling(font_size = 13) %>% 
+  column_spec(c(7,8), color = "white", background ="#990033") 
+
+```
+:::
+
+<br>
+
+::: {.fragment fragment-index=2}
+-   [Relation entre une variable quantitative et une qualitative Qn-Ql]{style="font-weight:bold; font-size:1.2em"}
+
+```{r echo=FALSE}
+head(wb,3) %>%
+  kable("html") %>%
+  kable_styling(font_size = 13) %>% 
+  column_spec(c(6,7), color = "white", background ="#990033") 
+
+```
+:::
+
+<br>
+
+::: {.fragment fragment-index=3}
+
+-   [Relation entre deux variables qualitatives Ql-Ql]{style="font-weight:bold; font-size:1.2em"}
+
+```{r echo=FALSE}
+head(wb,3) %>%
+  kable("html") %>%
+  kable_styling(font_size = 13) %>% 
+  column_spec(c(5,6), color = "white", background ="#990033") 
+
+```
+
+:::
+
+::: {.source .fragment fragment-index=1}
+Source : Banque Mondiale, 1990
+:::
+
+
+## Relation statistique et causalité
+ 
+Relation statistique : déterminer si la variation d'une variable "dépend" / est fonction de la variation d'une autre
+
+[Attention :]{style="color:red"} la mise en évidence d'une relation ne signifie pas l'identification d'une cause et de son effet, elle signale seulement une co-variation, qu'il reste à interpréter
+
+## Relation statistique et causalité
+ 
+Relation statistique : déterminer si la variation d'une variable "dépend" / est fonction de la variation d'une autre
+
+[Attention :]{style="color:red"} la mise en évidence d'une relation ne signifie pas l'identification d'une cause et de son effet, elle signale seulement une co-variation, qu'il reste à interpréter
+
+
+![](img/soleil1.png){fig-align="center" width=450}
+
+## Relation statistique et causalité
+ 
+Relation statistique : déterminer si la variation d'une variable "dépend" / est fonction de la variation d'une autre
+
+[Attention :]{style="color:red"} la mise en évidence d'une relation ne signifie pas l'identification d'une cause et de son effet, elle signale seulement une co-variation, qu'il reste à interpréter
+
+
+![](img/soleil2.png){fig-align="center"  width=450}
+
+## Relation statistique et causalité
+
+**Variété des liens**
+
+![](img/Feuillet_etal_Liens.png){fig-align="center" width=500}
+
+::: {.source}
+Feuillet, T., Cossart, É., & Commenges, H. (2019). *Manuel de géographie quantitative : Concepts, outils, méthodes*. Armand Colin. 
+:::
+
+
+
+## Relation statistique et causalité
+
+![](img/Chocolate.png){fig-align="center"}
+
+::: columns
+::: {.column}
+
+::: {.source}
+Messerli, F. H. (2012). Chocolate consumption, cognitive function, and Nobel laureates. N Engl J Med, 367(16), 1562-1564.
+:::
+
+:::
+
+::: {.column}
+
+::: {.source}
+Winters, J. R., Roberts, S. G., & Braiding, D. S. Chocolate Consumption, Trafﬁc Accidents and Serial Killers.
+:::
+
+:::
+:::
+
+[erreur écologique ici ou plus tard ? <br> et erreur atomiste]{style="color:red"}
+
+## Le déroulement "classique" d'une analyse de relation
+
+::: incremental
+-   observer un graphique croisant les 2 variables ou 2 cartes
+-   formuler les hypothèses nulle (indépendance) et alternative
+-   calculer un paramètre à partir des observations (*r*, *χ^2^*, ...)
+-   le comparer à une valeur théorique (table, distribution théorique)
+-   conclure sur l'**existence** d'une relation (selon un risque d'erreur) et sur son **intensité**
+-   éventuellement modéliser la relation et analyse des écarts au modèle ou donner un sens à la relation
+-   (parfois conditions d'application en amont ou en aval)
+:::
+
+## Risques d'erreur / p-value
+
+![](img/Tableau_hypotheses.png){fig-align="center" width=800}
+
+::: {.source}
+Wikimedia Commons, CC BY-SA 4.0
+:::
+
+![](img/Courbe_Khi2.png){fig-align="center" width=600}
+
+
+
+
+## Tests paramétriques ou non
+
+...
+
+## Applications à partir de plusieurs exemples
+
+-   [Relation entre deux variables quantitatives Qn-Qn]{style="color:#6C697A;font-weight:bold"} <br>ex : précipitations en Afrique de l'Ouest
+
+. . .
+
+-   [Relation entre deux variables qualitatives Ql-Ql]{style="color:#7A6C69;font-weight:bold"} <br> ex : modes de transport et produits alimentaires, au marché de Bouaké
+
+. . .
+
+-   [Relation entre une variable quantitative et une qualitative Qn-Ql]{style="color:#697A6C;font-weight:bold"} <br> ex : températures de surface et occupation du sol à Lagos
+
+
+
+# \[Qn-Qn\] <br> Relation entre deux variables quantitatives {background-image="img/template_diapo_EECIST_partie.png" background-size="cover"}
+
+
+## La question qu'on se pose...
+
+| Individus | X <br> (quantitative) | Y <br> (quantitative) |
+|-----------|:---------------------:|:---------------------:|
+| 1         |         X~1~          |         Y~1~          |
+| ...       |          ...          |          ...          |
+| i         |         X~i~          |         Y~i~          |
+| ...       |          ...          |          ...          |
+| n         |         X~n~          |         Y~n~          |
+
+: Tableau élémentaire
+
+<br>
+
+. . .
+
+::: {.message}
+est-ce que les variations de Y sont liées aux variations de X ?
+:::
+
+## Exemple d'application : Précipitations en Afrique W
+
+::: columns
+::: {.column width="60%"}
+![](img/WAfr_Preci.png){fig-align="left"}
+
+```{r echo=FALSE}
+#| layout-align: left
+preci <- readRDS("data/WAfr_Preci.RDS")
+
+preci$preci_Y_5180 = preci$preci_Y_5190
+preci <- preci[,-6]
+library(dplyr)
+head(preci) %>% 
+  kable("html") %>%
+  kable_styling(font_size = 16) 
+
+```
+
+:::
+
+::: {.column width="40%"}
+
+**Données utilisées :**  
+
+- Précipitations annuelles sur la période 1951-1980
+
+- Source : *Global Historical Climatology Network daily* (GHCNd, [lien](https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily))
+
+- traitements sur les données initiales : totaux annuels des précipitations pour les années complètes, sélection des stations où au moins 22 années sur 30 
+
+- le jeu de données extrait comprend, au final, très peu de stations (28), en raison des lacunes dans les données.
+
+::: {.message .fragment}
+Les précipitations varient-elles 
+significativement selon la latitude ? 
+
+et selon la longitude ? ou encore l'altitude ?
+:::
+
+:::
+:::
+
+
+## 1/ Graphique cartésien (nuage de points) pour avoir une idée de l'intensité et du sens de la relation
+
+::: {.etapes}
+**Nuage de points** &emsp; [&#11106; &emsp; Hypothèses &emsp; &#11106; &emsp; Calcul du *r* &emsp; &#11106; &emsp; Significativité &emsp; &#11106; &emsp; Modélisation]{style="opacity:0.25"} 
+:::
+
+![](img/Sens_Forme_Intensite.png){fig-align="left"}
+
+Intensité, forme, sens
+
+[Non finalisé]{style="color:red"}
+
+
+
+## 
+
+::: columns 
+::: {.column width="43%"}
+
+Structure du code avec `R-base` :
+```{r eval= FALSE}
+plot(tableau$variableX, tableau$variableY) 
+```
+:::
+
+::: {.column width="57%"}
+
+avec `ggplot2` (comme ci-dessous) :
+```{r eval= FALSE}
+library()
+# tableau : preci
+# variableX : latitude (par ex), variableY : preci_Y_5180
+ggplot(tableau) +                          
+  aes(x = variableX, y = variableY) +      
+  geom_point(shape = "circle", size = 2, colour = "#112446") +
+  labs(x = "Variable X", y = "Variable Y")
+```
+:::
+:::
+
+### Sur l'exemple des précipitations :
+
+```{r}
+#| echo: false
+#| layout-ncol: 3
+#| fig-width: 4
+#| fig-height: 3
+
+ggplot(preci) + 
+  theme(axis.title = element_text(size = 15)) +
+  aes(x = latitude, y = preci_Y_5180) +
+  geom_point(shape = "circle", size = 2, colour = "#112446") +
+  labs(x = "Latitude", y = "Précipitations (en mm)")
+
+ggplot(preci) +
+  theme(axis.title = element_text(size = 15)) +
+  aes(x = longitude, y = preci_Y_5180) +
+  geom_point(shape = "circle", size = 2, colour = "#112446") +
+  labs(x = "Longitude", y = "Précipitations (en mm)") 
+
+ggplot(preci) +
+  theme(axis.title = element_text(size = 15)) +
+  aes(x = elevation, y = preci_Y_5180) +
+  geom_point(shape = "circle", size = 2, colour = "#112446") +
+  labs(x = "Altitude", y = "Précipitations (en mm)") 
+```
+
+::: {.source}
+Source : NOAA GHCN
+:::
+
+::: {.callout-tip icon="false"}
+## Quizz
+Comment interprétez-vous ces 3 graphiques ?
+:::
+
+## 2/ Formulation des hypothèses
+
+::: {.etapes}
+[Nuage de points &emsp; &#11106; &emsp;]{style="opacity:0.25"} **Hypothèses** &emsp; [&#11106; &emsp; Calcul du *r* &emsp; &#11106; &emsp; Significativité &emsp; &#11106; &emsp; Modélisation]{style="opacity:0.25"} 
+:::
+
+<br>
+
+H~0~ (hypothèse nulle) : indépendance entre les 2 variables
+
+H~1~ (hypothèse alternative) : non indépendance (relation)
+
+. . .
+
+::: {.callout-note appearance="minimal" icon="FALSE"}
+Pour les précipitations,
+
+H~0~ : indépendance entre précipitations et latitude
+
+H~1~ : il existe une relation entre les précipitations et la latitude ; les précipitations varient selon la latitude
+:::
+
+. . .
+
+<br> 
+
+::: {.message}
+Il s'agit à présent de confirmer ou d'infirmer l'hypothèse H~0~.
+::: 
+
+
+
+## 3/ Calcul d'un coefficient de corrélation
+
+::: {.etapes}
+[Nuage de points &emsp; &#11106; &emsp; Hypothèses &emsp; &#11106;]{style="opacity:0.25"} &emsp; **Calcul du *r* ** &emsp; [&#11106; &emsp; Significativité &emsp; &#11106; &emsp; Modélisation]{style="opacity:0.25"} 
+:::
+
+<br>
+
+Coefficient de Bravais Pearson : $r_{x,y}=\frac{cov_{x,y}}{\sigma_x.\sigma_y}$ avec $cov_{x,y}=\frac1N\sum_{i=1}^{N}(x_i-\bar{x}).(y_i-\bar{y})$
+
+. . .
+
+<br>
+
+![](img/Correlations.png){fig-align="center" }
+
+::: {.source}
+Extrait et adapté d'une illustration de Wikimedia Commons, DenisBoigelot, CC0 
+:::
+
+## 3/ Calcul d'un coefficient de corrélation
+
+::: {.etapes}
+[Nuage de points &emsp; &#11106; &emsp; Hypothèses &emsp; &#11106;]{style="opacity:0.25"} &emsp; **Calcul du *r* ** &emsp; [&#11106; &emsp; Significativité &emsp; &#11106; &emsp; Modélisation]{style="opacity:0.25"} 
+:::
+
+<br>
+
+Coefficient de Bravais Pearson : $r_{x,y}=\frac{cov_{x,y}}{\sigma_x.\sigma_y}$ avec $cov_{x,y}=\frac1N\sum_{i=1}^{N}(x_i-\bar{x}).(y_i-\bar{y})$
+
+![](img/PlusCorr0.70.png){fig-align="center" width=800}
+
+::: {.source}
+Tiré de Helsel, D.R., Hirsch, R.M. (2002). *Statistical methods in water resources*. Techniques of Water Resources Investigations. ([lien vers le pdf](https://pubs.usgs.gov/twri/twri4a3/twri4a3.pdf))
+:::
+
+##
+
+Sous R : 
+```{r}
+#| layout-ncol: 3
+cor(preci$latitude, preci$preci_Y_5180)
+cor(preci$longitude, preci$preci_Y_5180)
+cor(preci$elevation, preci$preci_Y_5180)
+
+```
+
+::: {.callout-note icon="false"}
+## Lecture
+Les trois coefficients de Bravais Pearson sont ici négatifs, témoignant d'une possible relation négative : plus la latitude augmente, plus les précipitations diminuent.
+
+Le coefficient *r* est plus élevé, en valeur absolue (indépendamment du signe), avec la latitude et plus faible avec l'altitude. Le lien entre les précipitations et la latitude semble plus fort.
+
+Il s'agit ensuite de vérifier la **significativité** de ces relations, pour conclure à leur existence.
+:::
+
+[Non finalisé. Les autres coeff ici ou + tard ?]{style="color:red"}
+
+`method = "pearson"`, `method = "kendall"`, `method = "spearman"`
+
+
+## 4/ Vérification de la significativité
+
+::: {.etapes}
+[Nuage de points &emsp; &#11106; &emsp; Hypothèses &emsp; &#11106; &emsp; Calcul du *r*  &emsp; &#11106;]{style="opacity:0.25"} &emsp; **Significativité** &emsp; [&#11106; &emsp; Modélisation]{style="opacity:0.25"} 
+:::
+
+![](img/Correl.png){fig-align="left"}
+
+[Non finalisé]
+
+##
+Sous R : 
+```{r}
+#| layout-ncol: 3
+cor.test(preci$latitude, preci$preci_Y_5180)
+cor.test(preci$longitude, preci$preci_Y_5180)
+cor.test(preci$elevation, preci$preci_Y_5180)
+
+```
+
+::: {.callout-note icon="false"}
+## Lecture
+Les 2 premières [*p-value*] (latitude et longitude) sont ici inférieures à 1%, avec un degré de liberté [*df*] de 26 ; le coefficient de corrélation [*cor*] est plus élevé, en valeur absolue, pour la latitude : 
+
+les précipitations diminuent fortement avec la latitude (*i.e.* vers le nord) et, dans une moindre mesure, avec la longitude (*i.e.* vers l'est). 
+
+Avec l'altitude, la relation est plus faible. Elle est non significative avec un risque d'erreur à 5%. On peut conclure à l'existence d'une relation avec un risque d'erreur de 6%. 
+:::
+
+
+
+## 5/ Modélisation de la relation et analyse des résidus
+
+::: {.etapes}
+[Nuage de points &emsp; &#11106; &emsp; Hypothèses &emsp; &#11106; &emsp; Calcul du *r*  &emsp; &#11106; &emsp; Significativité &emsp; &#11106;]{style="opacity:0.25"} &emsp; **Modélisation** 
+:::
+
+Si relation, possibilité de réaliser une régression (y = ax + b) pour résumer, modéliser, prévoir...
+
+Sous R :
+
+::: columns
+::: {.column}
+```{r}
+lm_result <- lm(preci$preci_Y_5180 ~ preci$latitude )
+lm_result
+
+```
+::: {.callout-note icon="false"}
+## Lecture
+Les deux coefficients affichés sont l'ordonnée à l'origine (*b* ; ici [(Intercept)]) et la pente (*a*) de l'équation $y = a.x + b$.
+
+D'après le modèle construit, les précipitations moyennes annuelles seraient d'environ `r round(lm_result$coefficients[1], -1)`mm à l'équateur, c'est-à-dire à la latitude de 0°. Elles diminueraient de `r abs(round(lm_result$coefficients[2], 0))`mm à chaque degré de latitude vers le nord.
+:::
+:::
+::: {.column}
+```{r}
+plot(preci$preci_Y_5180 ~ preci$latitude) 
+abline(lm(preci$preci_Y_5180 ~ preci$latitude))
+```
+Le modèle Préci~Lat a un coefficient $r$ de `r round(cor(preci$preci_Y_5180, preci$latitude), 2)`, donc un coefficient de détermination $r^2$ de `r round(cor(preci$preci_Y_5180, preci$latitude)^2, 2)` : `r round(100*cor(preci$preci_Y_5180, preci$latitude)^2, 0)`% de la variation des précipitations sont liées à la latitude.
+:::
+:::
+
+##
+### Analyse des résidus
+
+analyse très importante des résidus et de leur répartition spatiale =\> reflet de spécificités locales et/ou importance d'autres fact. explicatifs
+
+=> en l'occurrence, ici, pas top !
+
+
+```{r echo=FALSE}
+#| layout-ncol: 2
+
+preci$res_lat <- lm_result$residuals
+
+ggplot(preci) +
+  theme(axis.title = element_text(size = 20)) +
+  aes(x = latitude, y = res_lat) +
+  geom_point(shape = "circle", size = 2, colour = "#112446") +
+  labs(x = "Latitude", y = "Résidus de la régression Préci ~ Lat") 
+
+
+library(sf)
+
+preci$res_lat <- lm_result$residuals
+
+preci_sf <- st_as_sf(preci, coords = c("longitude", "latitude"), crs = 4326)
+pal <- colorNumeric(palette = "RdBu", preci_sf$res_lat)
+leaflet(preci_sf, width=600, height=300) %>% 
+  addTiles(attribution ="Précipitations : NOAA GHCN") %>%  # à mieux préciser
+  # addProviderTiles("OpenTopoMap") %>% 
+  addCircleMarkers(radius=8, fillColor = ~pal(res_lat), fillOpacity = 1, weight = 1,
+                   label = ~name)  %>% addScaleBar(position = c("topleft"), options = scaleBarOptions(imperial = FALSE)) %>% 
+  addLegend("topright", pal = pal, values = ~res_lat,
+            title = "Résidus <br> de la relation <br> Préci ~ Lat <br> (en mm)",bins = 5,
+            opacity = 1) 
+
+```
+
+::: {.source}
+Sources : NOAA GHCN, OpenStreetMap, SRTM, OpenTopoMap (CC-BY-SA)
+:::
+
+
+::: callout-warning
+## Conditions d'application
+
+Pour au moins une des 2 variables, distribution normale et variance constante...
+:::
+
+[non finalisé]
+
+
+
+
+# Des questions ? <br> Des remarques ?
+
+
+
+
+# \[Ql-Ql\] <br> Relation entre deux variables qualitatives {background-image="img/template_diapo_EECIST_partie.png" background-size="cover"}
+
+## La question qu'on se pose...
+
+| Individus | X <br> (qualitative) | Y <br> (qualitative) |
+|-----------|:--------------------:|:--------------------:|
+| 1         |         X~1~         |         Y~1~         |
+| ...       |         ...          |         ...          |
+| i         |         X~i~         |         Y~i~         |
+| ...       |         ...          |         ...          |
+| n         |         X~n~         |         Y~n~         |
+
+: Tableau élémentaire
+
+
+
+<br>
+
+. . .
+
+::: {.message}
+est-ce que les modalités de Y sont réparties
+
+de façon non aléatoire entre les modalités de X ?
+:::
+
+## Exemple d'application : le marché de Bouaké
+
+::: columns
+::: {.column width="30%"}
+![](img/Bouake.png){fig-align="center"}
+:::
+
+::: {.column width="70%"}
+```{r echo=FALSE}
+
+bouake_ini <- read.csv2("data/MAR-BOUAKE-2014-data.csv")
+# Sélection de données 
+bouake <- bouake_ini %>% 
+  filter(mouvt == "entrée") %>% # seulement les entrées
+  # regroupement des produits et sélection des principaux
+  mutate(                      
+     produit = case_when(
+         prod %in% c("assawa", "bété bété", "florido", "igname", "kléglé", "koudjan", "kpassadjo","kponan", "trela", "wakrou") ~ "igname",
+         str_starts(prod, "riz") ~ "riz",
+         prod == "mais grain" ~ "mais",
+         prod == "arachide decortiquée" ~ "arachide"
+     )  
+  ) %>%
+  filter(!is.na(produit)) %>% 
+  # sélection et regroupement des principaux modes de transport
+  filter(mod %in% c("gros camion",  
+                    "pick-up", 
+                    "camion", 
+                    "voiture de transport")) %>% 
+  mutate(
+    transport = case_when(mod == "gros camion" ~ "camion",
+                          mod == "voiture de transport" ~ "voiture",
+                          TRUE ~ mod
+                          )) %>% 
+  select(code, produit, transport) 
+  
+```
+
+::: incremental
+-   à partir du tableau de données d'entrée de camion au marché de Bouaké (plus d'[info](lien))
+
+-   Source : [Bamba V., 2019. *Transport et approvisionnement du marché de gros de Bouaké en produits vivriers*. Thèse de Géographie, Université FHB de Cocody, Côte d'Ivoire.]{style="font-size:0.8em"}
+
+-   traitements sur les données initiales : regroupement des produits en grandes catégories (ex. igname), sélection des principaux produits et modes de transport
+
+-   le jeu de données extrait comprend `r nrow(bouake)` enregistrements, soit `r round(nrow(bouake)*100/nrow(bouake_ini), 0)`% du jeu initial.
+
+::: {.fragment}
+```{r echo=FALSE}
+knitr::kable(head(bouake, 10))
+
+```
+
+
+:::
+:::
+:::
+:::
+
+## Quels sont les modes de transports par types de produits ? <br> et inversement ?
+
+::: columns
+::: column
+```{r, echo=c(1,2)}
+ggplot(bouake, 
+       aes(x = produit, 
+           fill = transport)) +
+  theme(text = element_text(size = 30)) +
+  geom_bar(position = "stack") 
+
+```
+:::
+
+::: column
+```{r}
+ggplot(bouake, 
+       aes(x = transport, 
+           fill = produit)) + 
+  theme(text = element_text(size = 30)) +
+  geom_bar(position = "stack")
+```
+:::
+:::
+
+. . .
+
+::: {.message}
+existe-t-il une relation entre le mode de transport et le type de produit ?
+:::
+
+. . .
+
+::: {.message}
+=\> test du $\chi^2$ (chi2 ou khi2)
+:::
+
+. . .
+
+::: {.etapes}
+Tab. contingence & mosaïque &emsp; &#11106; &emsp; Hypothèses &emsp; &#11106; &emsp; $\chi2$ observé &emsp; &#11106; &emsp; Significativité
+:::
+
+
+
+## 1/ Tableau de contingence et graphique en mosaïque
+
+::: {.etapes}
+**Tab. contingence & mosaïque** &emsp; [&#11106; &emsp; Hypothèses &emsp; &#11106; &emsp; $\chi2$ observé &emsp; &#11106; &emsp; Significativité]{style="opacity:0.25"}
+:::
+
+
+Le **tableau de contingence** est un tableau de dénombrement : il répertorie le nombre d'individus avec la modalité $i$ de la première variable qualitative $X$ et la modalité $j$ de la seconde variable $Y$.
+
+::: {style="font-size:0.9em"}
+
+|        | Y~1~  | ... | Y~j~  | ... | Y~p~  | $\sum$ |
+|:-------|:-----:|:---:|:-----:|:---:|:-----:|--------|
+| X~1~   | N~11~ |     | N~1j~ |     | N~1p~ | N~1.~  |
+| ...    |       |     |       |     |       |        |
+| X~i~   | N~i1~ |     | N~ij~ |     | N~ip~ | N~i.~  |
+| ...    |       |     |       |     |       |        |
+| X~k~   | N~k1~ |     | N~kj~ |     | N~kp~ | N~k.~  |
+| $\sum$ | N~.1~ |     | N~.j~ |     | N~.p~ | N~..~  |
+
+: Tableau de contingence
+
+:::
+
+. . .
+
+Pour aller au-delà de ce tableau de contingence, on calcule des **profils en ligne** $N'_{ij} = \frac{N_{ij}}{N_{i.}}$ et **en colonne** $N''_{ij} = \frac{N_{ij}}{N_{.j}}$ qui donnent une idée sur la forme de la relation, ainsi que le tableau des **fréquences** $\frac{N_{ij}}{N_{..}}$.
+
+## Sur l'exemple de Bouaké
+
+::: columns
+::: {.column }
+Le tableau de contingence :
+
+```{r }
+tabconting <- table(bouake$produit, bouake$transport) 
+addmargins(tabconting)
+```
+
+
+
+
+
+::: {.callout-note icon="false"}
+## Lecture
+
+`r tabconting[2,1]` entrées enregistrées sont le produit *`r rownames(tabconting)[2]`*, transporté par *`r colnames(tabconting)[1]`*.
+
+*Sum* est la somme (soit par colonne, soit par ligne).
+:::
+
+
+::: {.callout-tip icon="false"}
+## Quizz
+
+Quel est le nombre d'enregistrements de *mais* transportés par un *pick up* ?
+:::
+:::
+
+
+
+::: {.column .fragment }
+
+Profils en ligne :
+
+```{r}
+profils_ligne <- prop.table(tabconting, 1)
+profils_ligne <- round(profils_ligne*100, 1) 
+addmargins(profils_ligne, 2)
+```
+
+::: {.callout-note icon="false"}
+## Lecture
+
+Le produit *`r rownames(profils_ligne)[1]`* est transporté à `r profils_ligne[1,3]`% par *`r colnames(profils_ligne)[3]`* et à `r profils_ligne[1,2]`% par *`r colnames(profils_ligne)[2]`*.
+:::
+
+::: {.fragment}
+Profils en colonne :
+
+```{r}
+profils_col <- prop.table(tabconting, 2)
+profils_col <- round(profils_col*100, 1) 
+addmargins(profils_col, 1)
+```
+
+::: {.callout-note icon="false"}
+## Lecture
+
+Le produit *`r rownames(profils_col)[4]`* représente `r profils_col[4,2]`% du transport par *`r colnames(profils_col)[2]`*.
+
+:::
+:::
+
+::: {}
+Tableau des fréquences :
+
+```{r}
+tab_freq <- round(tabconting*100/sum(tabconting), 1)
+addmargins(tab_freq)
+```
+
+::: {.callout-note icon="false"}
+## Lecture
+
+Le produit *`r rownames(profils_col)[3]`* transporté par  *`r colnames(profils_col)[1]`* représente `r tab_freq[3,1]`% des effectifs.
+
+:::
+:::
+:::
+:::
+
+## Le graphique en mosaïque
+
+Le graphique en mosaïque (ou le graphique Marimekko / Mekko) représente la proportion des individus pour toute combinaison/croisement de données qualitatives, par des rectangles dont la superficie est proportionnelle à cette proportion.
+
+::: columns
+::: {.column width="40%"}
+Sous R (base)^[1. C'est également possible avec [ggmosaic](https://cran.r-project.org/web/packages/ggmosaic/vignettes/ggmosaic.html) pour ggplot.] : 
+```{r}
+#| eval: false 
+mosaicplot(produit ~ transport, 
+           data = bouake,
+           color = TRUE,
+           main = "Mosaic plot de Bouaké")
+```
+
+::: {.callout-tip icon="false" .fragment}
+## Quizz
+
+Quelles combinaisons *transport-produit* sont les fréquentes ? les moins fréquentes ?
+
+Qu'en déduisez-vous ?
+:::
+
+:::
+
+::: {.column width="60%" style="margin:0; vertical-align: top" }
+```{r}
+#| echo: false 
+#| fig-width: 6
+#| fig-height: 6
+
+mosaicplot(produit ~ transport, data = bouake,
+           main = "Mosaic plot de Bouaké")
+```
+
+:::
+:::
+
+
+
+## Le graphique en mosaïque
+
+Le graphique en mosaïque (ou le graphique Marimekko / Mekko) représente la proportion des individus pour toute combinaison/croisement de données qualitatives, par des rectangles dont la superficie est proportionnelle à cette proportion.
+
+![](img/Ql_Ql.png){fig-align="center"}
+
+. . .
+
+::: {.absolute top="85%" left="10%"}
+::: {style="color:#594993; text-align:center; font-size: 2em"}
+**indépendance**
+:::
+:::
+
+. . .
+
+::: {.absolute top="85%" left="75%"}
+::: {style="color:#594993; text-align:center; font-size: 2em"}
+**relation ?**
+:::
+:::
+
+## 2/ Formulation des hypothèses
+
+::: {.etapes}
+[Tab. contingence & mosaïque &emsp; &#11106;]{style="opacity:0.25"} &emsp; **Hypothèses** &emsp; [&#11106; &emsp; $\chi2$ observé &emsp; &#11106; &emsp; Significativité]{style="opacity:0.25"}
+:::
+
+
+
+<br>
+
+H~0~ (hypothèse nulle) : indépendance entre les 2 variables
+
+H~1~ (hypothèse alternative) : non indépendance (relation)
+
+. . .
+
+::: {.callout-note appearance="minimal" icon="FALSE"}
+Pour Bouaké,
+
+H~0~ : indépendance entre le mode de transport et le type de produit
+
+H~1~ : il existe une relation entre le mode de transport et le type de produit
+:::
+
+. . .
+
+<br> 
+
+::: {.message}
+Il s'agit à présent de confirmer ou d'infirmer l'hypothèse H~0~.
+::: 
+
+## 3/ Calcul du $\chi2$ observé
+
+::: {.etapes}
+[Tab. contingence & mosaïque &emsp; &#11106; &emsp; Hypothèses &emsp; &#11106;]{style="opacity:0.25"} &emsp; **$\chi2$ observé** &emsp; [&#11106; &emsp; Significativité]{style="opacity:0.25"}
+:::
+
+![](img/Ql_Ql.png){fig-align="center" width=5%}
+
+Calcul des effectifs théoriques : $N^*_{ij} = \frac{ N_{i.} . N_{j.}}{ N_{..}}$ et des écarts à l'indépendance : $DEV_{ij} = N_{ij} - N^*_{ij}$
+
+Puis calcul du $\chi^2$ observé, qui est la somme des $\chi_{ij}^2$ locaux :
+
+$$\chi^2 obs. = \sum_{i=1,j=1}^{k,p} \chi_{ij}^2 = \sum_{1,1}^{k,p} \frac{DEV_{i,j}^2}{N^*_{i,j}}$$
+
+## 4/ Vérification de la significativité
+
+::: {.etapes}
+[Tab. contingence & mosaïque &emsp; &#11106; &emsp; Hypothèses &emsp; &#11106; &emsp; $\chi2$ observé &emsp; &#11106;]{style="opacity:0.25"} &emsp; **Significativité**
+:::
+
+Pour risque d'erreur $\alpha$ fixé et avec un degré de liberté $ddl = (k-1).(p-1)$ :
+
+-   si $\chi^2 observé > \chi^2 table$, alors H~0~ rejetée : les deux variables ne sont pas indépendantes, on peut conclure à l'existence d'une relation
+
+-   si $\chi^2 observé < \chi^2 table$, alors on ne peut rejeter H~0~, on ne peut conclure à l'existence d'une relation
+
+<br>
+
+::: callout-warning
+## Conditions d'application
+Le test du $\chi2$ est un test **paramétrique**, qui doit respecter plusieurs conditions :  
+
+$N_{ij}>20$
+
+$N_{i.}$ ou $N_{.j}>5$
+
+$N_{ij}^*>5$ dans 80% des cas
+
+Pour les petits échantillons, il est possible d'utiliser le **[test exact de Fisher](https://fr.wikipedia.org/wiki/Test_exact_de_Fisher)** (sous R : *`fisher.test()`*).
+:::
+
+
+## Sous R, étapes 3 et 4 
+
+<br>
+
+```{r}
+resu_chi2 <- chisq.test(tabconting)
+resu_chi2
+```
+
+::: {.callout-note icon="false"}
+## Lecture
+Le **$\chi2$** observé (*X-squared*) est de `r round(resu_chi2$statistic,2)` et le nombre de degré de liberté (*df*) de `r resu_chi2$parameter`. 
+
+La valeur-p (*p-value*) est la valeur à regarder pour quantifier la significativité statistique, ici pour vérifier l'existence ou non de la relation.
+
+Si la *p-value* est inférieure à 0.05, alors on peut rejeter l'hypothèse d'indépendance H~0~ avec un risque inférieur à 5% et donc conclure à l'existence d'une relation.
+:::
+
+
+. . .
+
+Les résultats du test du $\chi2$ comprennent aussi...
+
+::: columns
+::: {.column}
+
+... les effectifs théoriques 
+
+```{r}
+resu_chi2$expected
+```
+:::
+
+::: {.column}
+
+et les écarts à l'indépendance :
+
+```{r}
+resu_chi2$residuals
+```
+:::
+:::
+
+## Pour aller plus loin, quel est le sens de la relation ?
+
+Il est possible de colorier les rectangles d'un graphique en mosaïque en fonction du degré de relation entre les variables : le [bleu]{style="color:blue"} représente plus de cas que prévu étant donné l'indépendance, le [rouge ]{style="color:red"} représente moins de cas que prévu.
+
+```{r}
+mosaicplot(produit ~ transport, data = bouake, shade = TRUE)
+```
+
+## Pour aller plus loin, quelle est l'intensité de la relation ?
+
+
+A compléter... avec ex
+
+$$V_{Cramer} = \sqrt{\frac{\chi^2}{n.ddl}} $$
+
+Plus le $V_{Cramer}$ tend vers 1, plus la relation est forte. Plus c'est vers 0, plus elle est faible.
+
+Pour l'exemple de Bouaké : 
+
+```{r}
+library(questionr)
+cramer.v(tabconting)
+```
+
+::: {.callout-note icon="false"}
+## Lecture
+Le V de Cramer est ici de `r round(cramer.v(tabconting),2)`, la relation est moyenne. 
+:::
+
+
+# Des questions ? <br> Des remarques ?
+
+
+
+# \[Qn-Ql\] <br> Relation entre une variable quantitative et une qualitative{background-image="img/template_diapo_EECIST_partie.png" background-size="cover"}
+ 
+
+## La question qu'on se pose...
+
+| Individus | X <br> (qualitative) | Y <br> (quantitative) |
+|-----------|:--------------------:|:---------------------:|
+| 1         |         X~1~         |         Y~1~          |
+| ...       |         ...          |          ...          |
+| i         |         X~i~         |         Y~i~          |
+| ...       |         ...          |          ...          |
+| n         |         X~n~         |         Y~n~          |
+
+: Tableau élémentaire
+
+<br>
+
+. . .
+
+::: {.message}
+est-ce que les valeurs de Y sont liées aux modalités de X ?
+:::
+
+## La question qu'on se pose...
+
+::: {.message}
+est-ce que les valeurs de Y sont liées aux modalités de X ?
+:::
+
+::: {.r-stack}
+
+![](img/QlQn_Egal.png){fig-align="center"}
+
+![](img/QlQn_Diff.png){fig-align="center" .fragment}
+
+:::
+
+
+
+## Exemple d'application : îlot de chaleur à Lagos
+
+::: columns
+::: {.column width="50%"}
+L**'îlot de chaleur urbain** : températures de l'air la nuit plus élevées dans le centre des villes qu'à l'extérieur.
+
+![](img/ICU_Oke.png){fig-align="center"}
+
+::: {.source}
+Oke *et al.*, 2017
+:::
+:::
+
+::: {.column width="50%"}
+
+Autour de Lagos (\~ 15 millions d'habitants, près de 23 millions pour l'agglomération)
+
+```{r echo=FALSE}
+#| fig-width: 5
+#| fig-height: 5
+
+leaflet() %>% addTiles() %>% 
+  setView(lng = 3.302154, lat = 6.724524, zoom = 9) %>%
+  addScaleBar(position = "bottomleft", 
+              options = scaleBarOptions(imperial = FALSE)) %>% 
+  addMiniMap(tiles = providers$OpenStreetMap[1], 
+             # toggleDisplay = TRUE,
+             width = 100,
+             height = 100,
+             zoomLevelOffset = -6,
+             position = "topright")
+
+```
+
+:::
+:::
+
+
+## Exemple d'application : deux sources utilisées
+
+::: columns
+::: {.column width="50%"}
+**LST - Températures nocturnes de surface :**
+
+- satellite MODIS Terra
+
+- *Land Surface Temperature* (MOD11A1) 
+
+- 1 nuit sélectionnée : 7/1/2023
+
+![](img/Terra_spacecraft_model.png){fig-align="left" width=50%}
+
+::: {.source}
+[NASA](https://science.nasa.gov/get-involved/toolkits/spacecraft-icons) (domaine public)
+:::
+
+:::
+
+::: {.column width="50%"}
+**LCZ - *Local Climate Zones* :**  
+
+Demuzere *et al.*, 2022 
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7324909.svg)](https://doi.org/10.5281/zenodo.7324909)
+![](img/LCZ_Stewart_Bechtel2.png){width=72%}   
+
+::: {.source}
+Bechtel *et al.*, 2017
+:::
+:::
+:::
+
+
+## Ex. d'application : répartitions spatiales des LST et LCZ
+
+**Autour de Lagos**
+
+![](img/Lagos_LST_LCZ.png){fig-align="center" width="100%"}
+
+
+## Ex. d'application : répartitions spatiales des LST et LCZ
+
+**Tableau de données**
+
+::: columns
+::: {.column width="30%"}
+```{r echo=FALSE}
+#| layout-align: left
+lagos <- read.csv("data/Lagos_LST_LCZ.csv")
+lagos <- na.omit(lagos)  # Suppression des pixels avec des valeurs manquantes
+lagos$id <- 1:nrow(lagos)  # ajout d'un identifiant
+
+library(dplyr)
+# sélection des principales LCZ (ici au moins 70 pixels, soit >0.27)
+lagos_select <- lagos %>% filter(LCZ1 %in% c(3,6,8,9,11,12,13,14,17))
+lagos_select <- lagos_select %>% select(id, lat = latitude, lon = longitude, LST = VALUE, LCZ = LCZ1)  # réarrangement du tableau
+
+head(lagos_select) %>% 
+  kable("html") %>%
+  kable_styling(font_size = 18) %>% 
+  column_spec(4, color = "white", background ="#333399") %>% 
+  column_spec(5, color = "white", background ="#990033") 
+
+
+```
+
+:::
+
+::: {.column width="70%" .fragment}
+::: {.message}
+comment les valeurs de LST varient 
+
+en fonction des modalités des LCZ ?
+:::
+
+<br>
+
+::: {.message}
+peut-on confirmer l'existence 
+
+d'une relation entre LST et LCZ ? 
+:::
+:::
+
+:::
+
+. . .
+
+**Pour les tests paramétriques :**
+
+- variable qualitative à 2 modalités : test du Student (comparaison de moyenne)
+
+- variable Ql à + de 2 modalités : analyse de la variance et test de Fisher
+
+Les deux reposant sur les mêmes étapes : 
+
+::: {.etapes2}
+Graphique (boxplot) &emsp; &#11106; &emsp; Hypothèses &emsp; &#11106; &emsp; Calcul du T ou F observé &emsp; &#11106; &emsp; Significativité &emsp; &#11106; &emsp; Sens 
+:::
+
+
+## 1/ Graphique des variations de Y selon les modalités de X
+
+::: {.etapes2}
+**Graphique (boxplot)** &emsp; [&#11106; &emsp; Hypothèses &emsp; &#11106; &emsp; Calcul du T ou F observé &emsp; &#11106; &emsp; Significativité &emsp; &#11106; &emsp; Sens]{style="opacity:0.25"} 
+:::
+
+<br>
+Rappel : l'objectif est de visualiser la distribution de la variable quantitative selon les modalités de la variable qualitative.
+
+### **Boxplot** (ou boîte à moustache)
+
+
+![](img/boxplot.png)
+
+::: {.source}
+Wikimedia Commons, Jumanbar, CC BY-SA 3.0
+:::
+
+## 
+
+### **Boxplot** (ou boîte à moustache)
+
+à partir du jeu de données `R` *airquality* 
+
+(Daily air quality measurements in New York, May to September 1973)
+
+::: columns
+::: {.column .fragment}
+
+Avec `R-base` :
+
+```{r}
+boxplot(airquality$Ozone ~ airquality$Month,
+        xlab="Var. Ql : mois", 
+        ylab="Var. Qn : Concentrations en ozone (en ppm)")
+
+```
+
+:::
+
+
+::: {.column .fragment}
+
+Avec `ggplot2` :
+
+```{r}
+ggplot(airquality, 
+       aes(x = as.factor(Month), 
+           y = Ozone)) +
+  xlab("Var. Ql : Mois") +
+  ylab("Var. Qn : Concentrations en ozone (en ppm)") +
+  geom_boxplot() 
+
+```
+
+:::
+:::
+
+##
+
+### **Boxplot** (ou boîte à moustache) - variantes
+
+::: columns
+::: {.column .fragment}
+
+Boxplot "à encoches"
+
+```{r}
+ggplot(airquality, aes(x = as.factor(Month), 
+              y = Ozone)) +
+    xlab("Var. Ql : Mois") +
+  ylab("Var. Qn : Concentrations en ozone (en ppm)") +
+  geom_boxplot(notch = TRUE, 
+               fill = "cornflowerblue", 
+               alpha = .7) 
+```
+
+:::
+
+::: {.column .fragment}
+
+Boxplot "violon"
+
+```{r}
+ggplot(airquality, 
+       aes(x = as.factor(Month), 
+           y = Ozone)) +
+      xlab("Var. Ql : Mois") +
+  ylab("Var. Qn : Concentrations en ozone (en ppm)") +
+  geom_violin() 
+
+```
+
+:::
+:::
+
+##
+
+### Autres variantes pour visualiser la distribution d'une var. Qn selon les modalités d'une var. Ql
+
+::: columns
+::: {.column .fragment}
+Les lignes de crête *Ridgeline plot*
+
+```{r}
+library(ggridges)
+ggplot(airquality, 
+       aes(x = Ozone, 
+               y = as.factor(Month),
+               fill = as.factor(Month))) +
+      ylab("Var. Ql : Mois") +
+  xlab("Var. Qn : Concentrations en ozone (en ppm)") +
+  geom_density_ridges() + 
+  theme_ridges() +
+  theme(legend.position = "none")
+```
+
+:::
+
+::: {.column .fragment}
+Les "gigues" *Jitter plot*
+
+```{r}
+ggplot(airquality, 
+       aes(y = as.factor(Month), 
+           x = Ozone, 
+           color = as.factor(Month))) +
+  geom_jitter(alpha = 0.7,
+              size = 3) + 
+  labs(x = "Var. Qn : Concentrations en ozone (en ppm)",
+       y = "Var. Ql : Mois") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+```
+
+:::  
+:::
+  
+
+## 
+
+### À partir de l'exemple d'application sur Lagos 
+
+::: columns
+::: {.column}
+
+```{r echo=FALSE}
+#| fig-height: 9
+ggplot(lagos_select, aes(x=as.factor(LCZ), y=LST, color=as.factor(LCZ))) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(alpha = 0.5,
+              size = 0.2) +
+  theme(text = element_text(size = 30),
+        legend.position = "none") +
+  scale_color_manual(breaks = c(3,6,8,9,11,12,13,14,17), 
+                     values=c("#F30008", "#FC6347", "#B0BEBA", "#FDB1A4", "#0C5A01", "#159E04", "#3B8C0F", "#A4FF4C", "#3C46FD"))   +
+  xlab("LCZ") + ylab("Températures de surface (en °C)") + labs(color = "Local Climate Zone")
+
+```
+
+:::
+
+::: {.column}
+
+```{r echo=FALSE}
+group_by(lagos_select, LCZ) %>%
+  summarise(
+    n = n(),
+    médiane = median(LST, na.rm = TRUE) %>% round(1),
+    moyenne = mean(LST, na.rm = TRUE) %>% round(1),
+    "écart-type" = sd(LST, na.rm = TRUE) %>% round(1)
+  ) %>% 
+  mutate(LCZ = c("3 - Compact low-rise", "6 - Open low-rise", "8 - Large low-rise", "9 - Sparsely built", "11 - Dense trees", "12 - Scattered trees", "13 - Bush, scrub", "14 - Low plants", "17 - Water")) %>% 
+  select(LCZ, n, médiane, moyenne, "écart-type") %>% 
+  kable("html") %>%
+  kable_styling(font_size = 14) %>% 
+  row_spec(1, color = "white", background = "#F30008") %>% 
+  row_spec(2, color = "white", background = "#FC6347") %>% 
+  row_spec(3,  background = "#B0BEBA") %>% 
+  row_spec(4,  background = "#FDB1A4") %>% 
+  row_spec(5, color = "white", background = "#0C5A01") %>% 
+  row_spec(6, color = "white", background = "#159E04") %>% 
+  row_spec(7, color = "white", background = "#3B8C0F") %>% 
+  row_spec(8,  background = "#A4FF4C") %>% 
+  row_spec(9, color = "white", background = "#3C46FD")
+
+```
+
+::: {.message}
+est-ce que les températures de surface sont liées à la typologie LCZ ?
+
+est-ce que les LCZ expliquent les températures de surface ?
+
+:::
+
+:::
+:::
+
+
+
+
+## 2/ Formulation des hypothèses 
+
+::: {.etapes2}
+[Graphique (boxplot)]{style="opacity:0.25"} &emsp; &#11106; &emsp; **Hypothèses** &emsp; &#11106; &emsp; [Calcul du T ou F observé &emsp; &#11106; &emsp; Significativité &emsp; &#11106; &emsp; Sens]{style="opacity:0.25"} 
+:::
+
+<br>
+
+### Avec une variable qualitative à 2 modalités, c'est-à-dire dans le cas de la comparaison de 2 moyennes (test de Student)
+<br>
+
+H~0~ (hypothèse nulle) : indépendance entre les 2 variables, égalité des deux moyennes
+
+H~1~ (hypothèse alternative) : non indépendance, moyennes différentes
+
+
+## 2/ Formulation des hypothèses 
+
+::: {.etapes2}
+[Graphique (boxplot)]{style="opacity:0.25"} &emsp; &#11106; &emsp; **Hypothèses** &emsp; &#11106; &emsp; [Calcul du T ou F observé &emsp; &#11106; &emsp; Significativité &emsp; &#11106; &emsp; Sens]{style="opacity:0.25"} 
+:::
+
+<br>
+
+### Dans le cas de l'analyse de la variance / test de Fisher
+<br>
+
+H~0~ (hypothèse nulle) : indépendance entre les 2 variables
+
+H~1~ (hypothèse alternative) : non indépendance
+
+. . .
+
+::: {.callout-note appearance="minimal" icon="FALSE"}
+Pour Lagos,
+
+H~0~ : indépendance entre températures de surface et types morphologiques
+
+H~1~ : il existe une relation entre le mode de transport et le type de produit
+:::
+
+. . .
+
+<br> 
+
+::: {.message}
+Il s'agit à présent de confirmer ou d'infirmer l'hypothèse H~0~.
+::: 
+
+
+
+## 3/ Calcul du T ou F observé
+
+::: {.etapes2}
+[Graphique (boxplot) &emsp; &#11106; &emsp; Hypothèses &emsp; &#11106;]{style="opacity:0.25"} &emsp; **Calcul du T ou F observé** &emsp; [&#11106; &emsp; Significativité &emsp; &#11106; &emsp; Sens]{style="opacity:0.25"} 
+:::
+
+
+### Avec une variable qualitative à 2 modalités : **test de Student** (T)
+
+- **Échantillons indépendants**
+
+(ex : 2 catégories, 2 versants, 2 types éco de pays...)
+
+$$T=\frac{\bar X_A - \bar X_B }{\sqrt{(n_A.\sigma_A^2 + n_B.\sigma_B^2)(\frac{1}{n_A}+\frac{1}{n_B})} }.{\sqrt{(n_A + n_B-2)}}\sim t_{n_A + n_B-2}$$
+
+. . .
+
+- **Échantillons appariés**
+(ex : à 2 dates différentes)
+
+$$T=\frac {\bar D}{\sigma_D}.\sqrt{n-1}\sim t_{n-1}$$ 
+
+::: {style="text-align:center"}
+avec $D = X_A - X_B$
+:::
+
+## 
+### Avec une Ql à + de 2 modalités : **analyse de la variance et test de Fisher** (F)
+
+- **Décomposition de la variance**
+
+Variance totale = Variance int**[er]{style="color:red"}**classes (expliquée) + Variance int**[ra]{style="color:red"}**classes (résiduelle) 
+
+
+$$\sum_{i=1}^{n}(X_i-\bar X)^2 =  \sum_{g=1}^{k}(\bar X_g - \bar X)^2 +  \sum_{g=1}^{k}\sum_{i=1}^{n_g}(X_i-\bar X_g)^2 $$ 
+
+[la variable quantitative (à expliquer) : $X_i$ ; les modalités de la variable qualitative de $g = 1$ à $k$.]{style="font-size:16px"}
+
+::: {.r-stack}
+
+![](img/Var_totale.png){fig-align="center" .fragment}
+
+
+![](img/Var_interclasse.png){fig-align="center" .fragment}
+
+![](img/Var_intraclasse.png){fig-align="center" .fragment}
+
+:::
+
+::: {.source}
+D'après Helsel, D.R., Hirsch, R.M. (2002). *Statistical methods in water resources*. Techniques of Water Resources Investigations. ([lien vers le pdf](https://pubs.usgs.gov/twri/twri4a3/twri4a3.pdf))
+:::
+
+## 
+
+- **Calcul du F observé (["rapport de corrélation"]{style="color:red"})**
+
+$$F = \frac{\frac{var.intERclasse}{k-1}}{\frac{var.intRAclasse}{n-k}} \sim F_{k-1,n-k}$$
+
+## 4/ Vérification de la significativité
+
+::: {.etapes2}
+[Graphique (boxplot) &emsp; &#11106; &emsp; Hypothèses &emsp; &#11106; &emsp; Calcul du T ou F observé &emsp; &#11106;]{style="opacity:0.25"} &emsp; **Significativité** &emsp; [&#11106; &emsp; Sens]{style="opacity:0.25"} 
+:::
+
+<br> 
+
+
+### **Test de Student** [non finalisé]
+
+Soit T \~\> t (nA-nB-2),
+
+toujours se ramener à P (T \< t)
+
+Pour unilatéral : P (T \< t) = 1 - a
+
+Pour bilatéral : P (T \< t) = 1 - (a/2)
+
+::: callout-warning
+## Conditions d'application
+Le test de Student est un test **paramétrique**, qui doit respecter plusieurs conditions :  
+
+\- distribution normale de la variable quantitative dans les classes de la variable qualitative (pour vérifier sous R, `shapiro.test()`)
+
+\- homogénéité des variances (pour vérifier sous R, `var.test()`, `leveneTest()`)
+
+
+Si cela ne respecte pas ces conditions ou sur des petits échantillons, il est possible d'utiliser le **[test de Wilcoxon-Mann-Whitney](https://fr.wikipedia.org/wiki/Test_de_Wilcoxon-Mann-Whitney)** (sous R : *`wilcox.test()`*) pour 2 échantillons indépendants et le **[test de Kruskal-Wallis](https://fr.wikipedia.org/wiki/Test_de_Kruskal-Wallis)** (sous R : *`kruskal.test()`*) pour 2 appariés.
+:::
+
+
+##
+### **Analyse de la variance et test de Fisher**
+
+Pour risque d'erreur $\alpha$ fixé et avec un degré de liberté $ddl = (k-1).(p-1)$ :
+
+-   si $F observé > F table$, alors H~0~ rejetée : les deux variables ne sont pas indépendantes, on peut conclure à l'existence d'une relation
+
+-   si $F observé < F table$, alors on ne peut rejeter H~0~, on ne peut conclure à l'existence d'une relation
+
+<br>
+
+. . .
+
+::: callout-warning
+
+## Conditions d'application
+L'analyse de la variance / test de Fisher est un test **paramétrique**, qui doit respecter plusieurs conditions :  
+
+\- distribution normale de la variable quantitative dans les classes de la variable qualitative (pour vérifier sous R, `shapiro.test()`)
+
+\- homogénéité des variances (pour vérifier sous R, `var.test()`, `leveneTest()`)
+
+Si cela ne respecte pas ces conditions ou sur des petits échantillons, il est possible d'utiliser le **[test de Kruskal-Wallis](https://fr.wikipedia.org/wiki/Test_de_Kruskal-Wallis)** (sous R : *`kruskal.test()`*) et/ou **test de Friedman** (sous R : *`friedman.test()`*), puis le test de Tukey et Kramer (Nemenyi ; sous R : `posthoc.kruskal.nemenyi.test()`).
+:::
+
+
+## Sous R, étapes 3 et 4
+
+### **Test de Student** 
+
+```{r eval=FALSE}
+...
+
+```
+
+
+## Sous R, étapes 3 et 4
+
+### **Analyse de la variance et test de Fisher**
+
+```{r eval=FALSE}
+anova_result <- aov(var_quanti ~ var_quali, data=my_data)
+
+summary(anova_result)
+```
+
+Sur l'exemple de Lagos :
+
+```{r echo=FALSE}
+anova_result <- aov(LST ~ LCZ, data=lagos_select)
+summary(anova_result)
+
+```
+
+
+La *p-value* ici est bien inférieure à 1%, $H_0$ est rejetée, il existe des différences significatives de températures entre les occupations du sol. 
+
+**Autres possibilités**
+
+::: columns
+::: {.column}
+```{r eval=FALSE}
+oneway.test(var_quanti ~ var_quali,
+            var.equal=TRUE, 
+            data=my_data)
+```
+:::
+
+::: {.column}
+```{r eval=FALSE}
+anova_result2 <- lm(var_quanti ~ var_quali, 
+                    data=my_data)
+summary(anova_result2)
+anova(anova_result2)
+```
+:::
+
+:::
+
+## 5/ *Post-hoc* : dans quel sens et % de la variance expliquée
+
+Pour déterminer quelles modalités diffèrent les unes des autres (comparaisons par pairs), on peut effectuer le test de *Tukey Honest Significant Differences* (sous R, `TukeyHSD()`) et de `pairwise.t.test()`.
+
+
+# Des questions ? <br> Des remarques ?
+
+## Ressources 
+
+
+- Helsel, D.R., Hirsch, R.M. (2002). *Statistical methods in water resources*. Techniques of Water Resources Investigations. ([lien vers le pdf](https://pubs.usgs.gov/twri/twri4a3/twri4a3.pdf))
+
+- Feuillet, T., Cossart, É., & Commenges, H. (2019). *Manuel de géographie quantitative : Concepts, outils, méthodes*. Armand Colin. 
+
+- "C’est chi2 ? Et bien c’est lui !", Grégoire Le Campion
+https://ouvrir.passages.cnrs.fr/wp-content/uploads/2019/09/X2.html
+
+- "Tout ce que vous n’avez jamais voulu savoir sur le χ2 sans jamais avoir eu envie de le demander", Julien Barnier, 2008
+http://cef-cfr.ca/uploads/Reference/khicarr%E92008.pdf
+
+- ...

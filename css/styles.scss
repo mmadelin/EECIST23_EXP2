@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+
+/*-- scss:defaults --*/
+// Merci à Alison Presmanes Hill (https://github.com/apreshill) !
+
+$font-family-sans-serif: 'Open Sans', sans-serif;
+
+// Primary/body text
+$mainFont: 'Jost', sans-serif;
+$mainFontSize: 24px;
+$mainColor: #333;
+
+// Liens
+$link-color: #2A7972;
+$linkColorHover: darken( $link-color, 20% );
+
+
+// Text selection
+$selectionBackgroundColor: #FF5E99;
+$selectionColor: #fff;
+
+$code-block-bg: #e3e3e3;
+
+$presentation-title-slide-text-align: left;
+
+
+.reveal .footer {
+  font-size: 0.35em !important;
+}
+
+/*-- scss:rules --*/
+
+h2 {
+  color: #20639B !important;
+}
+
+.source {
+    color:gray;
+    font-size:14px;
+}
+.imgborder {
+  border: 1px solid gray;
+}
+
+.message {
+    color: #EE6331;
+    text-align: center !important ;
+    font-size: 1em;
+}
+
+.etapes {
+    color: #274e13;
+    background-color: #ecf4e9;
+    text-align: center !important ;
+    font-size: 0.8em;
+    padding: 5px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.etapes2 {
+    color: #274e13;
+    background-color: #ecf4e9;
+    text-align: center !important ;
+    font-size: 0.8em;
+    padding: 5px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.reveal .slide-logo {
+  width: 520px!important;
+  height: 30px!important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+

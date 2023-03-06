@@ -1,0 +1,3280 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="EXP2_statsbivar_files/libs/clipboard/clipboard.min.js"></script>
+<script src="EXP2_statsbivar_files/libs/quarto-html/tabby.min.js"></script>
+<script src="EXP2_statsbivar_files/libs/quarto-html/popper.min.js"></script>
+<script src="EXP2_statsbivar_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="EXP2_statsbivar_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="EXP2_statsbivar_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="EXP2_statsbivar_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.2.269">
+
+  <meta name="author" content="">
+  <title>.</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="EXP2_statsbivar_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="EXP2_statsbivar_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #1f1c1b;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #1f1c1b; } /* Normal */
+    code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+    code span.an { color: #ca60ca; } /* Annotation */
+    code span.at { color: #0057ae; } /* Attribute */
+    code span.bn { color: #b08000; } /* BaseN */
+    code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+    code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #924c9d; } /* Char */
+    code span.cn { color: #aa5500; } /* Constant */
+    code span.co { color: #898887; } /* Comment */
+    code span.cv { color: #0095ff; } /* CommentVar */
+    code span.do { color: #607880; } /* Documentation */
+    code span.dt { color: #0057ae; } /* DataType */
+    code span.dv { color: #b08000; } /* DecVal */
+    code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+    code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+    code span.fl { color: #b08000; } /* Float */
+    code span.fu { color: #644a9b; } /* Function */
+    code span.im { color: #ff5500; } /* Import */
+    code span.in { color: #b08000; } /* Information */
+    code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+    code span.op { color: #ca60ca; } /* Operator */
+    code span.ot { color: #006e28; } /* Other */
+    code span.pp { color: #006e28; } /* Preprocessor */
+    code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+    code span.sc { color: #3daee9; } /* SpecialChar */
+    code span.ss { color: #ff5500; } /* SpecialString */
+    code span.st { color: #bf0303; } /* String */
+    code span.va { color: #0057ae; } /* Variable */
+    code span.vs { color: #bf0303; } /* VerbatimString */
+    code span.wa { color: #bf0303; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="EXP2_statsbivar_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="EXP2_statsbivar_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="EXP2_statsbivar_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="EXP2_statsbivar_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="EXP2_statsbivar_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  
+  <script src="EXP2_statsbivar_files/libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="EXP2_statsbivar_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+  <script src="EXP2_statsbivar_files/libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+  <script src="EXP2_statsbivar_files/libs/jquery-1.12.4/jquery.min.js"></script>
+  <link href="EXP2_statsbivar_files/libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+  <script src="EXP2_statsbivar_files/libs/leaflet-1.3.1/leaflet.js"></script>
+  <link href="EXP2_statsbivar_files/libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+  <script src="EXP2_statsbivar_files/libs/proj4-2.6.2/proj4.min.js"></script>
+  <script src="EXP2_statsbivar_files/libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+  <link href="EXP2_statsbivar_files/libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+  <script src="EXP2_statsbivar_files/libs/leaflet-binding-2.1.1/leaflet.js"></script>
+  <script src="EXP2_statsbivar_files/libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+  <script src="EXP2_statsbivar_files/libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+  <link href="EXP2_statsbivar_files/libs/leaflet-minimap-3.3.1/Control.MiniMap.min.css" rel="stylesheet">
+  <script src="EXP2_statsbivar_files/libs/leaflet-minimap-3.3.1/Control.MiniMap.min.js"></script>
+  <script src="EXP2_statsbivar_files/libs/leaflet-minimap-3.3.1/Minimap-binding.js"></script>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="img/template_diapo_EECIST_Page1.png" data-background-size="cover" class="quarto-title-block center">
+  <h1 class="title">.</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+ 
+</div>
+</div>
+</div>
+
+</section>
+<section>
+<section id="introduction" class="title-slide slide level1 center" data-background-image="img/template_diapo_EECIST_partie.png" data-background-size="cover">
+<h1>Introduction</h1>
+<div class="cell">
+
+</div>
+</section>
+<section id="les-objectifs-du-cours" class="slide level2">
+<h2>Les objectifs du cours</h2>
+<ul>
+<li><p>découvrir ou approfondir les statistiques bivariées (à replacer entre univariées et multivariées)</p></li>
+<li><p>savoir quelles méthodes choisir en fonction de la question et des données</p></li>
+<li><p>les appliquer sous R (ou autres ?)</p></li>
+<li><p>comprendre l’importance des écarts au modèle</p></li>
+</ul>
+<p><br></p>
+<div class="fragment">
+<p>Objectifs lors de l’atelier de l’EE2022 :</p>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="img/Obj_EE2022.png" class="imgborder" width="500"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="les-conditions-envisagées" class="slide level2">
+<h2>Les conditions envisagées</h2>
+<ul>
+<li><p>entre 10h et 60h</p></li>
+<li><p>cours théorique s’appuyant sur des exemples d’application</p></li>
+<li><p>séances pratiques sous R</p></li>
+</ul>
+<div class="fragment">
+<p>Lors de l’atelier de l’EE2022 :</p>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="img/Timing_EE2022.png" class="imgborder" width="400"></p>
+</figure>
+</div>
+</div>
+</section></section>
+<section>
+<section id="contenu-du-cours-à-moduler-selon-le-temps-dédié-au-cours" class="title-slide slide level1 center" data-background-image="img/template_diapo_EECIST_partie.png" data-background-size="cover">
+<h1>Contenu du cours <br> <span style="font-size:36px">à moduler selon le temps dédié au cours</span></h1>
+
+</section>
+<section id="les-statistiques-bivariées" class="slide level2">
+<h2>Les statistiques bivariées</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="font-size: 18px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> date </th>
+   <th style="text-align:right;"> longitude </th>
+   <th style="text-align:right;"> latitude </th>
+   <th style="text-align:left;"> region </th>
+   <th style="text-align:left;"> income_level </th>
+   <th style="text-align:right;"> CO2_hab </th>
+   <th style="text-align:right;"> GDP_hab </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Angola </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 13.24200 </td>
+   <td style="text-align:right;"> -8.81155 </td>
+   <td style="text-align:left;"> Sub-Saharan Africa </td>
+   <td style="text-align:left;"> Lower middle income </td>
+   <td style="text-align:right;"> 0.0004317 </td>
+   <td style="text-align:right;"> 947.7042 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> France </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 2.35097 </td>
+   <td style="text-align:right;"> 48.85660 </td>
+   <td style="text-align:left;"> Europe &amp; Central Asia </td>
+   <td style="text-align:left;"> High income </td>
+   <td style="text-align:right;"> 0.0064512 </td>
+   <td style="text-align:right;"> 21793.8426 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> India </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 77.22500 </td>
+   <td style="text-align:right;"> 28.63530 </td>
+   <td style="text-align:left;"> South Asia </td>
+   <td style="text-align:left;"> Lower middle income </td>
+   <td style="text-align:right;"> 0.0007090 </td>
+   <td style="text-align:right;"> 367.5566 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Senegal </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> -17.47340 </td>
+   <td style="text-align:right;"> 14.72470 </td>
+   <td style="text-align:left;"> Sub-Saharan Africa </td>
+   <td style="text-align:left;"> Lower middle income </td>
+   <td style="text-align:right;"> 0.0004229 </td>
+   <td style="text-align:right;"> 961.5739 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="source">
+<p>Source : Banque Mondiale, 1990</p>
+</div>
+</section>
+<section id="les-statistiques-bivariées-1" class="slide level2">
+<h2>Les statistiques bivariées</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="font-size: 18px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> date </th>
+   <th style="text-align:right;"> longitude </th>
+   <th style="text-align:right;"> latitude </th>
+   <th style="text-align:left;"> region </th>
+   <th style="text-align:left;"> income_level </th>
+   <th style="text-align:right;"> CO2_hab </th>
+   <th style="text-align:right;"> GDP_hab </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Angola </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 13.24200 </td>
+   <td style="text-align:right;"> -8.81155 </td>
+   <td style="text-align:left;"> Sub-Saharan Africa </td>
+   <td style="text-align:left;"> Lower middle income </td>
+   <td style="text-align:right;"> 0.0004317 </td>
+   <td style="text-align:right;color: white !important;background-color: #333399 !important;"> 947.7042 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> France </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 2.35097 </td>
+   <td style="text-align:right;"> 48.85660 </td>
+   <td style="text-align:left;"> Europe &amp; Central Asia </td>
+   <td style="text-align:left;"> High income </td>
+   <td style="text-align:right;"> 0.0064512 </td>
+   <td style="text-align:right;color: white !important;background-color: #333399 !important;"> 21793.8426 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> India </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 77.22500 </td>
+   <td style="text-align:right;"> 28.63530 </td>
+   <td style="text-align:left;"> South Asia </td>
+   <td style="text-align:left;"> Lower middle income </td>
+   <td style="text-align:right;"> 0.0007090 </td>
+   <td style="text-align:right;color: white !important;background-color: #333399 !important;"> 367.5566 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Senegal </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> -17.47340 </td>
+   <td style="text-align:right;"> 14.72470 </td>
+   <td style="text-align:left;"> Sub-Saharan Africa </td>
+   <td style="text-align:left;"> Lower middle income </td>
+   <td style="text-align:right;"> 0.0004229 </td>
+   <td style="text-align:right;color: white !important;background-color: #333399 !important;"> 961.5739 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="source">
+<p>Source : Banque Mondiale, 1990</p>
+</div>
+<p>Statistiques <span style="color:#333399;">univariées</span></p>
+</section>
+<section id="les-statistiques-bivariées-2" class="slide level2">
+<h2>Les statistiques bivariées</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="font-size: 18px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> date </th>
+   <th style="text-align:right;"> longitude </th>
+   <th style="text-align:right;"> latitude </th>
+   <th style="text-align:left;"> region </th>
+   <th style="text-align:left;"> income_level </th>
+   <th style="text-align:right;"> CO2_hab </th>
+   <th style="text-align:right;"> GDP_hab </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Angola </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 13.24200 </td>
+   <td style="text-align:right;"> -8.81155 </td>
+   <td style="text-align:left;"> Sub-Saharan Africa </td>
+   <td style="text-align:left;"> Lower middle income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0004317 </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 947.7042 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> France </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 2.35097 </td>
+   <td style="text-align:right;"> 48.85660 </td>
+   <td style="text-align:left;"> Europe &amp; Central Asia </td>
+   <td style="text-align:left;"> High income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0064512 </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 21793.8426 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> India </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 77.22500 </td>
+   <td style="text-align:right;"> 28.63530 </td>
+   <td style="text-align:left;"> South Asia </td>
+   <td style="text-align:left;"> Lower middle income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0007090 </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 367.5566 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Senegal </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> -17.47340 </td>
+   <td style="text-align:right;"> 14.72470 </td>
+   <td style="text-align:left;"> Sub-Saharan Africa </td>
+   <td style="text-align:left;"> Lower middle income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0004229 </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 961.5739 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="source">
+<p>Source : Banque Mondiale, 1990</p>
+</div>
+<p>Statistiques univariées   ⭢   <span style="color:#990033;font-weight:bold">bivariées</span></p>
+</section>
+<section id="les-statistiques-bivariées-3" class="slide level2">
+<h2>Les statistiques bivariées</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="font-size: 18px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> date </th>
+   <th style="text-align:right;"> longitude </th>
+   <th style="text-align:right;"> latitude </th>
+   <th style="text-align:left;"> region </th>
+   <th style="text-align:left;"> income_level </th>
+   <th style="text-align:right;"> CO2_hab </th>
+   <th style="text-align:right;"> GDP_hab </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Angola </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 13.24200 </td>
+   <td style="text-align:right;"> -8.81155 </td>
+   <td style="text-align:left;"> Sub-Saharan Africa </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> Lower middle income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0004317 </td>
+   <td style="text-align:right;"> 947.7042 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> France </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 2.35097 </td>
+   <td style="text-align:right;"> 48.85660 </td>
+   <td style="text-align:left;"> Europe &amp; Central Asia </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> High income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0064512 </td>
+   <td style="text-align:right;"> 21793.8426 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> India </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 77.22500 </td>
+   <td style="text-align:right;"> 28.63530 </td>
+   <td style="text-align:left;"> South Asia </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> Lower middle income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0007090 </td>
+   <td style="text-align:right;"> 367.5566 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Senegal </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> -17.47340 </td>
+   <td style="text-align:right;"> 14.72470 </td>
+   <td style="text-align:left;"> Sub-Saharan Africa </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> Lower middle income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0004229 </td>
+   <td style="text-align:right;"> 961.5739 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="source">
+<p>Source : Banque Mondiale, 1990</p>
+</div>
+<p>Statistiques univariées   ⭢   <span style="color:#990033;font-weight:bold">bivariées</span></p>
+</section>
+<section id="les-statistiques-bivariées-4" class="slide level2">
+<h2>Les statistiques bivariées</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="font-size: 18px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> date </th>
+   <th style="text-align:right;"> longitude </th>
+   <th style="text-align:right;"> latitude </th>
+   <th style="text-align:left;"> region </th>
+   <th style="text-align:left;"> income_level </th>
+   <th style="text-align:right;"> CO2_hab </th>
+   <th style="text-align:right;"> GDP_hab </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Angola </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 13.24200 </td>
+   <td style="text-align:right;"> -8.81155 </td>
+   <td style="text-align:left;"> Sub-Saharan Africa </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> Lower middle income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0004317 </td>
+   <td style="text-align:right;"> 947.7042 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> France </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 2.35097 </td>
+   <td style="text-align:right;"> 48.85660 </td>
+   <td style="text-align:left;"> Europe &amp; Central Asia </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> High income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0064512 </td>
+   <td style="text-align:right;"> 21793.8426 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> India </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 77.22500 </td>
+   <td style="text-align:right;"> 28.63530 </td>
+   <td style="text-align:left;"> South Asia </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> Lower middle income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0007090 </td>
+   <td style="text-align:right;"> 367.5566 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Senegal </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> -17.47340 </td>
+   <td style="text-align:right;"> 14.72470 </td>
+   <td style="text-align:left;"> Sub-Saharan Africa </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> Lower middle income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0004229 </td>
+   <td style="text-align:right;"> 961.5739 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="source">
+<p>Source : Banque Mondiale, 1990</p>
+</div>
+<p>Statistiques univariées   ⭢   <span style="color:#990033;font-weight:bold">bivariées</span></p>
+<p><br></p>
+<p>Objectifs :</p>
+<ul>
+<li><p>comparaison de deux variables</p></li>
+<li><p>relation entre deux variables</p></li>
+</ul>
+</section>
+<section id="les-statistiques-bivariées-5" class="slide level2">
+<h2>Les statistiques bivariées</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="font-size: 18px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> date </th>
+   <th style="text-align:right;"> longitude </th>
+   <th style="text-align:right;"> latitude </th>
+   <th style="text-align:left;"> region </th>
+   <th style="text-align:left;"> income_level </th>
+   <th style="text-align:right;"> CO2_hab </th>
+   <th style="text-align:right;"> GDP_hab </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Angola </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 13.24200 </td>
+   <td style="text-align:right;"> -8.81155 </td>
+   <td style="text-align:left;"> Sub-Saharan Africa </td>
+   <td style="text-align:left;"> Lower middle income </td>
+   <td style="text-align:right;"> 0.0004317 </td>
+   <td style="text-align:right;"> 947.7042 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> France </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 2.35097 </td>
+   <td style="text-align:right;"> 48.85660 </td>
+   <td style="text-align:left;"> Europe &amp; Central Asia </td>
+   <td style="text-align:left;"> High income </td>
+   <td style="text-align:right;"> 0.0064512 </td>
+   <td style="text-align:right;"> 21793.8426 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> India </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 77.22500 </td>
+   <td style="text-align:right;"> 28.63530 </td>
+   <td style="text-align:left;"> South Asia </td>
+   <td style="text-align:left;"> Lower middle income </td>
+   <td style="text-align:right;"> 0.0007090 </td>
+   <td style="text-align:right;"> 367.5566 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Senegal </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> -17.47340 </td>
+   <td style="text-align:right;"> 14.72470 </td>
+   <td style="text-align:left;"> Sub-Saharan Africa </td>
+   <td style="text-align:left;"> Lower middle income </td>
+   <td style="text-align:right;"> 0.0004229 </td>
+   <td style="text-align:right;"> 961.5739 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="source">
+<p>Source : Banque Mondiale, 1990</p>
+</div>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/TypeData_CAR1.png" width="500"></p>
+</figure>
+</div>
+<div class="source">
+<p>Source : Cours de CAR1, Cartographie thématique &amp; Sémiologie Graphique, EE2023</p>
+</div>
+</div><div class="column fragment" style="width:45%;">
+<div class="callout callout-tip no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Quizz</strong></p>
+</div>
+<div class="callout-content">
+<p>En imaginant un tableau élémentaire avec nous comme individus (une ligne par personne), donnez un exemple</p>
+<p>de variable qualitative ?</p>
+<p>de variable quantitative absolue (de stock) ?</p>
+<p>de variable quantitative relative ?</p>
+<p>de variable qualitative ordinale ?</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="analyse-dune-relation" class="title-slide slide level1 center" data-background-color="#CAF2F5">
+<h1>Analyse d’une relation</h1>
+
+</section>
+<section id="différentes-analyses-2-à-2-selon-les-types-de-variables" class="slide level2">
+<h2>Différentes analyses 2 à 2, selon les types de variables</h2>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li><span style="font-weight:bold; font-size:1.2em">Relation entre deux variables quantitatives Qn-Qn</span></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> date </th>
+   <th style="text-align:right;"> longitude </th>
+   <th style="text-align:right;"> latitude </th>
+   <th style="text-align:left;"> region </th>
+   <th style="text-align:left;"> income_level </th>
+   <th style="text-align:right;"> CO2_hab </th>
+   <th style="text-align:right;"> GDP_hab </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Angola </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 13.24200 </td>
+   <td style="text-align:right;"> -8.81155 </td>
+   <td style="text-align:left;"> Sub-Saharan Africa </td>
+   <td style="text-align:left;"> Lower middle income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0004317 </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 947.7042 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> France </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 2.35097 </td>
+   <td style="text-align:right;"> 48.85660 </td>
+   <td style="text-align:left;"> Europe &amp; Central Asia </td>
+   <td style="text-align:left;"> High income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0064512 </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 21793.8426 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> India </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 77.22500 </td>
+   <td style="text-align:right;"> 28.63530 </td>
+   <td style="text-align:left;"> South Asia </td>
+   <td style="text-align:left;"> Lower middle income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0007090 </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 367.5566 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="fragment" data-fragment-index="2">
+<ul>
+<li><span style="font-weight:bold; font-size:1.2em">Relation entre une variable quantitative et une qualitative Qn-Ql</span></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> date </th>
+   <th style="text-align:right;"> longitude </th>
+   <th style="text-align:right;"> latitude </th>
+   <th style="text-align:left;"> region </th>
+   <th style="text-align:left;"> income_level </th>
+   <th style="text-align:right;"> CO2_hab </th>
+   <th style="text-align:right;"> GDP_hab </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Angola </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 13.24200 </td>
+   <td style="text-align:right;"> -8.81155 </td>
+   <td style="text-align:left;"> Sub-Saharan Africa </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> Lower middle income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0004317 </td>
+   <td style="text-align:right;"> 947.7042 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> France </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 2.35097 </td>
+   <td style="text-align:right;"> 48.85660 </td>
+   <td style="text-align:left;"> Europe &amp; Central Asia </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> High income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0064512 </td>
+   <td style="text-align:right;"> 21793.8426 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> India </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 77.22500 </td>
+   <td style="text-align:right;"> 28.63530 </td>
+   <td style="text-align:left;"> South Asia </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> Lower middle income </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 0.0007090 </td>
+   <td style="text-align:right;"> 367.5566 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="fragment" data-fragment-index="3">
+<ul>
+<li><span style="font-weight:bold; font-size:1.2em">Relation entre deux variables qualitatives Ql-Ql</span></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> date </th>
+   <th style="text-align:right;"> longitude </th>
+   <th style="text-align:right;"> latitude </th>
+   <th style="text-align:left;"> region </th>
+   <th style="text-align:left;"> income_level </th>
+   <th style="text-align:right;"> CO2_hab </th>
+   <th style="text-align:right;"> GDP_hab </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Angola </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 13.24200 </td>
+   <td style="text-align:right;"> -8.81155 </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> Sub-Saharan Africa </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> Lower middle income </td>
+   <td style="text-align:right;"> 0.0004317 </td>
+   <td style="text-align:right;"> 947.7042 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> France </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 2.35097 </td>
+   <td style="text-align:right;"> 48.85660 </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> Europe &amp; Central Asia </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> High income </td>
+   <td style="text-align:right;"> 0.0064512 </td>
+   <td style="text-align:right;"> 21793.8426 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> India </td>
+   <td style="text-align:right;"> 1990 </td>
+   <td style="text-align:right;"> 77.22500 </td>
+   <td style="text-align:right;"> 28.63530 </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> South Asia </td>
+   <td style="text-align:left;color: white !important;background-color: #990033 !important;"> Lower middle income </td>
+   <td style="text-align:right;"> 0.0007090 </td>
+   <td style="text-align:right;"> 367.5566 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="source fragment" data-fragment-index="1">
+<p>Source : Banque Mondiale, 1990</p>
+</div>
+</section>
+<section id="relation-statistique-et-causalité" class="slide level2">
+<h2>Relation statistique et causalité</h2>
+<p>Relation statistique : déterminer si la variation d’une variable “dépend” / est fonction de la variation d’une autre</p>
+<p><span style="color:red">Attention :</span> la mise en évidence d’une relation ne signifie pas l’identification d’une cause et de son effet, elle signale seulement une co-variation, qu’il reste à interpréter</p>
+</section>
+<section id="relation-statistique-et-causalité-1" class="slide level2">
+<h2>Relation statistique et causalité</h2>
+<p>Relation statistique : déterminer si la variation d’une variable “dépend” / est fonction de la variation d’une autre</p>
+<p><span style="color:red">Attention :</span> la mise en évidence d’une relation ne signifie pas l’identification d’une cause et de son effet, elle signale seulement une co-variation, qu’il reste à interpréter</p>
+
+<img data-src="img/soleil1.png" width="450" class="r-stretch quarto-figure-center"></section>
+<section id="relation-statistique-et-causalité-2" class="slide level2">
+<h2>Relation statistique et causalité</h2>
+<p>Relation statistique : déterminer si la variation d’une variable “dépend” / est fonction de la variation d’une autre</p>
+<p><span style="color:red">Attention :</span> la mise en évidence d’une relation ne signifie pas l’identification d’une cause et de son effet, elle signale seulement une co-variation, qu’il reste à interpréter</p>
+
+<img data-src="img/soleil2.png" width="450" class="r-stretch quarto-figure-center"></section>
+<section id="relation-statistique-et-causalité-3" class="slide level2">
+<h2>Relation statistique et causalité</h2>
+<p><strong>Variété des liens</strong></p>
+
+<img data-src="img/Feuillet_etal_Liens.png" width="500" class="r-stretch quarto-figure-center"><div class="source">
+<p>Feuillet, T., Cossart, É., &amp; Commenges, H. (2019). <em>Manuel de géographie quantitative : Concepts, outils, méthodes</em>. Armand Colin.</p>
+</div>
+</section>
+<section id="relation-statistique-et-causalité-4" class="slide level2">
+<h2>Relation statistique et causalité</h2>
+
+<img data-src="img/Chocolate.png" class="r-stretch quarto-figure-center"><div class="columns">
+<div class="column">
+<div class="source">
+<p>Messerli, F. H. (2012). Chocolate consumption, cognitive function, and Nobel laureates. N Engl J Med, 367(16), 1562-1564.</p>
+</div>
+</div><div class="column">
+<div class="source">
+<p>Winters, J. R., Roberts, S. G., &amp; Braiding, D. S. Chocolate Consumption, Trafﬁc Accidents and Serial Killers.</p>
+</div>
+</div>
+</div>
+<p><span style="color:red">erreur écologique ici ou plus tard ? <br> et erreur atomiste</span></p>
+</section>
+<section id="le-déroulement-classique-dune-analyse-de-relation" class="slide level2">
+<h2>Le déroulement “classique” d’une analyse de relation</h2>
+<div>
+<ul>
+<li class="fragment">observer un graphique croisant les 2 variables ou 2 cartes</li>
+<li class="fragment">formuler les hypothèses nulle (indépendance) et alternative</li>
+<li class="fragment">calculer un paramètre à partir des observations (<em>r</em>, <em>χ<sup>2</sup></em>, …)</li>
+<li class="fragment">le comparer à une valeur théorique (table, distribution théorique)</li>
+<li class="fragment">conclure sur l’<strong>existence</strong> d’une relation (selon un risque d’erreur) et sur son <strong>intensité</strong></li>
+<li class="fragment">éventuellement modéliser la relation et analyse des écarts au modèle ou donner un sens à la relation</li>
+<li class="fragment">(parfois conditions d’application en amont ou en aval)</li>
+</ul>
+</div>
+</section>
+<section id="risques-derreur-p-value" class="slide level2">
+<h2>Risques d’erreur / p-value</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/Tableau_hypotheses.png" width="800"></p>
+</figure>
+</div>
+<div class="source">
+<p>Wikimedia Commons, CC BY-SA 4.0</p>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/Courbe_Khi2.png" width="600"></p>
+</figure>
+</div>
+</section>
+<section id="tests-paramétriques-ou-non" class="slide level2">
+<h2>Tests paramétriques ou non</h2>
+<p>…</p>
+</section>
+<section id="applications-à-partir-de-plusieurs-exemples" class="slide level2">
+<h2>Applications à partir de plusieurs exemples</h2>
+<ul>
+<li><span style="color:#6C697A;font-weight:bold">Relation entre deux variables quantitatives Qn-Qn</span> <br>ex : précipitations en Afrique de l’Ouest</li>
+</ul>
+<div class="fragment">
+<ul>
+<li><span style="color:#7A6C69;font-weight:bold">Relation entre deux variables qualitatives Ql-Ql</span> <br> ex : modes de transport et produits alimentaires, au marché de Bouaké</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><span style="color:#697A6C;font-weight:bold">Relation entre une variable quantitative et une qualitative Qn-Ql</span> <br> ex : températures de surface et occupation du sol à Lagos</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="qn-qn-relation-entre-deux-variables-quantitatives" class="title-slide slide level1 center" data-background-image="img/template_diapo_EECIST_partie.png" data-background-size="cover">
+<h1>[Qn-Qn] <br> Relation entre deux variables quantitatives</h1>
+
+</section>
+<section id="la-question-quon-se-pose" class="slide level2">
+<h2>La question qu’on se pose…</h2>
+<table>
+<caption>Tableau élémentaire</caption>
+<thead>
+<tr class="header">
+<th>Individus</th>
+<th style="text-align: center;">X <br> (quantitative)</th>
+<th style="text-align: center;">Y <br> (quantitative)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td style="text-align: center;">X<sub>1</sub></td>
+<td style="text-align: center;">Y<sub>1</sub></td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+</tr>
+<tr class="odd">
+<td>i</td>
+<td style="text-align: center;">X<sub>i</sub></td>
+<td style="text-align: center;">Y<sub>i</sub></td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+</tr>
+<tr class="odd">
+<td>n</td>
+<td style="text-align: center;">X<sub>n</sub></td>
+<td style="text-align: center;">Y<sub>n</sub></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="fragment">
+<div class="message">
+<p>est-ce que les variations de Y sont liées aux variations de X ?</p>
+</div>
+</div>
+</section>
+<section id="exemple-dapplication-précipitations-en-afrique-w" class="slide level2">
+<h2>Exemple d’application : Précipitations en Afrique W</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="img/WAfr_Preci.png"></p>
+</figure>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+
+<table class="table" style="font-size: 16px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> id </th>
+   <th style="text-align:left;"> name </th>
+   <th style="text-align:right;"> latitude </th>
+   <th style="text-align:right;"> longitude </th>
+   <th style="text-align:right;"> elevation </th>
+   <th style="text-align:right;"> preci_Y_5180 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> BN000005306 </td>
+   <td style="text-align:left;"> KANDI </td>
+   <td style="text-align:right;"> 11.13 </td>
+   <td style="text-align:right;"> 2.93 </td>
+   <td style="text-align:right;"> 290 </td>
+   <td style="text-align:right;"> 1091.171 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> BN000005319 </td>
+   <td style="text-align:left;"> NATITINGOU </td>
+   <td style="text-align:right;"> 10.32 </td>
+   <td style="text-align:right;"> 1.48 </td>
+   <td style="text-align:right;"> 460 </td>
+   <td style="text-align:right;"> 1372.879 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> BN000005331 </td>
+   <td style="text-align:left;"> TCHAOUROU </td>
+   <td style="text-align:right;"> 8.87 </td>
+   <td style="text-align:right;"> 2.60 </td>
+   <td style="text-align:right;"> 325 </td>
+   <td style="text-align:right;"> 1201.423 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> BN000005335 </td>
+   <td style="text-align:left;"> SAVE </td>
+   <td style="text-align:right;"> 7.98 </td>
+   <td style="text-align:right;"> 2.43 </td>
+   <td style="text-align:right;"> 198 </td>
+   <td style="text-align:right;"> 1144.021 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> BN000005344 </td>
+   <td style="text-align:left;"> COTONOU </td>
+   <td style="text-align:right;"> 6.35 </td>
+   <td style="text-align:right;"> 2.38 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 1348.521 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> IV000005528 </td>
+   <td style="text-align:left;"> ODIENNE </td>
+   <td style="text-align:right;"> 9.50 </td>
+   <td style="text-align:right;"> -7.57 </td>
+   <td style="text-align:right;"> 432 </td>
+   <td style="text-align:right;"> 1624.418 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<p><strong>Données utilisées :</strong></p>
+<ul>
+<li><p>Précipitations annuelles sur la période 1951-1980</p></li>
+<li><p>Source : <em>Global Historical Climatology Network daily</em> (GHCNd, <a href="https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily">lien</a>)</p></li>
+<li><p>traitements sur les données initiales : totaux annuels des précipitations pour les années complètes, sélection des stations où au moins 22 années sur 30</p></li>
+<li><p>le jeu de données extrait comprend, au final, très peu de stations (28), en raison des lacunes dans les données.</p></li>
+</ul>
+<div class="message fragment">
+<p>Les précipitations varient-elles significativement selon la latitude ?</p>
+<p>et selon la longitude ? ou encore l’altitude ?</p>
+</div>
+</div>
+</div>
+</section>
+<section id="graphique-cartésien-nuage-de-points-pour-avoir-une-idée-de-lintensité-et-du-sens-de-la-relation" class="slide level2">
+<h2>1/ Graphique cartésien (nuage de points) pour avoir une idée de l’intensité et du sens de la relation</h2>
+<div class="etapes">
+<p><strong>Nuage de points</strong>   <span style="opacity:0.25">⭢   Hypothèses   ⭢   Calcul du <em>r</em>   ⭢   Significativité   ⭢   Modélisation</span></p>
+</div>
+
+<img data-src="img/Sens_Forme_Intensite.png" class="r-stretch quarto-figure-left"><p>Intensité, forme, sens</p>
+<p><span style="color:red">Non finalisé</span></p>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="columns">
+<div class="column" style="width:43%;">
+<p>Structure du code avec <code>R-base</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">plot</span>(tableau<span class="sc">$</span>variableX, tableau<span class="sc">$</span>variableY) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:57%;">
+<p>avec <code>ggplot2</code> (comme ci-dessous) :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>()</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># tableau : preci</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># variableX : latitude (par ex), variableY : preci_Y_5180</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">ggplot</span>(tableau) <span class="sc">+</span>                          </span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">aes</span>(<span class="at">x =</span> variableX, <span class="at">y =</span> variableY) <span class="sc">+</span>      </span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="st">"circle"</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">colour =</span> <span class="st">"#112446"</span>) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Variable X"</span>, <span class="at">y =</span> <span class="st">"Variable Y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<h3 id="sur-lexemple-des-précipitations">Sur l’exemple des précipitations :</h3>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-14-1.png" width="384"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-14-2.png" width="384"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-14-3.png" width="384"></p>
+</div>
+</div>
+</div>
+<div class="source">
+<p>Source : NOAA GHCN</p>
+</div>
+<div class="callout callout-tip no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Quizz</strong></p>
+</div>
+<div class="callout-content">
+<p>Comment interprétez-vous ces 3 graphiques ?</p>
+</div>
+</div>
+</div>
+</section>
+<section id="formulation-des-hypothèses" class="slide level2">
+<h2>2/ Formulation des hypothèses</h2>
+<div class="etapes">
+<p><span style="opacity:0.25">Nuage de points   ⭢  </span> <strong>Hypothèses</strong>   <span style="opacity:0.25">⭢   Calcul du <em>r</em>   ⭢   Significativité   ⭢   Modélisation</span></p>
+</div>
+<p><br></p>
+<p>H<sub>0</sub> (hypothèse nulle) : indépendance entre les 2 variables</p>
+<p>H<sub>1</sub> (hypothèse alternative) : non indépendance (relation)</p>
+<div class="fragment">
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>Pour les précipitations,</p>
+<p>H<sub>0</sub> : indépendance entre précipitations et latitude</p>
+<p>H<sub>1</sub> : il existe une relation entre les précipitations et la latitude ; les précipitations varient selon la latitude</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<div class="message">
+<p>Il s’agit à présent de confirmer ou d’infirmer l’hypothèse H<sub>0</sub>.</p>
+</div>
+</div>
+</section>
+<section id="calcul-dun-coefficient-de-corrélation" class="slide level2">
+<h2>3/ Calcul d’un coefficient de corrélation</h2>
+<div class="etapes">
+<p><span style="opacity:0.25">Nuage de points   ⭢   Hypothèses   ⭢</span>   <strong>Calcul du <em>r</em> </strong>   <span style="opacity:0.25">⭢   Significativité   ⭢   Modélisation</span></p>
+</div>
+<p><br></p>
+<p>Coefficient de Bravais Pearson : <span class="math inline">\(r_{x,y}=\frac{cov_{x,y}}{\sigma_x.\sigma_y}\)</span> avec <span class="math inline">\(cov_{x,y}=\frac1N\sum_{i=1}^{N}(x_i-\bar{x}).(y_i-\bar{y})\)</span></p>
+<div class="fragment">
+<p><br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/Correlations.png"></p>
+</figure>
+</div>
+<div class="source">
+<p>Extrait et adapté d’une illustration de Wikimedia Commons, DenisBoigelot, CC0</p>
+</div>
+</div>
+</section>
+<section id="calcul-dun-coefficient-de-corrélation-1" class="slide level2">
+<h2>3/ Calcul d’un coefficient de corrélation</h2>
+<div class="etapes">
+<p><span style="opacity:0.25">Nuage de points   ⭢   Hypothèses   ⭢</span>   <strong>Calcul du <em>r</em> </strong>   <span style="opacity:0.25">⭢   Significativité   ⭢   Modélisation</span></p>
+</div>
+<p><br></p>
+<p>Coefficient de Bravais Pearson : <span class="math inline">\(r_{x,y}=\frac{cov_{x,y}}{\sigma_x.\sigma_y}\)</span> avec <span class="math inline">\(cov_{x,y}=\frac1N\sum_{i=1}^{N}(x_i-\bar{x}).(y_i-\bar{y})\)</span></p>
+
+<img data-src="img/PlusCorr0.70.png" width="800" class="r-stretch quarto-figure-center"><div class="source">
+<p>Tiré de Helsel, D.R., Hirsch, R.M. (2002). <em>Statistical methods in water resources</em>. Techniques of Water Resources Investigations. (<a href="https://pubs.usgs.gov/twri/twri4a3/twri4a3.pdf">lien vers le pdf</a>)</p>
+</div>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p>Sous R :</p>
+<div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">cor</span>(preci<span class="sc">$</span>latitude, preci<span class="sc">$</span>preci_Y_5180)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">cor</span>(preci<span class="sc">$</span>longitude, preci<span class="sc">$</span>preci_Y_5180)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">cor</span>(preci<span class="sc">$</span>elevation, preci<span class="sc">$</span>preci_Y_5180)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<pre><code>[1] -0.8179883</code></pre>
+</div>
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<pre><code>[1] -0.6671676</code></pre>
+</div>
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<pre><code>[1] -0.3620154</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-note no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Lecture</strong></p>
+</div>
+<div class="callout-content">
+<p>Les trois coefficients de Bravais Pearson sont ici négatifs, témoignant d’une possible relation négative : plus la latitude augmente, plus les précipitations diminuent.</p>
+<p>Le coefficient <em>r</em> est plus élevé, en valeur absolue (indépendamment du signe), avec la latitude et plus faible avec l’altitude. Le lien entre les précipitations et la latitude semble plus fort.</p>
+<p>Il s’agit ensuite de vérifier la <strong>significativité</strong> de ces relations, pour conclure à leur existence.</p>
+</div>
+</div>
+</div>
+<p><span style="color:red">Non finalisé. Les autres coeff ici ou + tard ?</span></p>
+<p><code>method = "pearson"</code>, <code>method = "kendall"</code>, <code>method = "spearman"</code></p>
+</section>
+<section id="vérification-de-la-significativité" class="slide level2">
+<h2>4/ Vérification de la significativité</h2>
+<div class="etapes">
+<p><span style="opacity:0.25">Nuage de points   ⭢   Hypothèses   ⭢   Calcul du <em>r</em>   ⭢</span>   <strong>Significativité</strong>   <span style="opacity:0.25">⭢   Modélisation</span></p>
+</div>
+
+<img data-src="img/Correl.png" class="r-stretch quarto-figure-left"><p>[Non finalisé]</p>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<p>Sous R :</p>
+<div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">cor.test</span>(preci<span class="sc">$</span>latitude, preci<span class="sc">$</span>preci_Y_5180)</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">cor.test</span>(preci<span class="sc">$</span>longitude, preci<span class="sc">$</span>preci_Y_5180)</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">cor.test</span>(preci<span class="sc">$</span>elevation, preci<span class="sc">$</span>preci_Y_5180)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  preci$latitude and preci$preci_Y_5180
+t = -7.2508, df = 26, p-value = 1.062e-07
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.9125730 -0.6403192
+sample estimates:
+       cor 
+-0.8179883 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  preci$longitude and preci$preci_Y_5180
+t = -4.5669, df = 26, p-value = 0.0001055
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.8329254 -0.3915492
+sample estimates:
+       cor 
+-0.6671676 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  preci$elevation and preci$preci_Y_5180
+t = -1.9802, df = 26, p-value = 0.05835
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.64762446  0.01278873
+sample estimates:
+       cor 
+-0.3620154 </code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-note no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Lecture</strong></p>
+</div>
+<div class="callout-content">
+<p>Les 2 premières [<em>p-value</em>] (latitude et longitude) sont ici inférieures à 1%, avec un degré de liberté [<em>df</em>] de 26 ; le coefficient de corrélation [<em>cor</em>] est plus élevé, en valeur absolue, pour la latitude :</p>
+<p>les précipitations diminuent fortement avec la latitude (<em>i.e.</em> vers le nord) et, dans une moindre mesure, avec la longitude (<em>i.e.</em> vers l’est).</p>
+<p>Avec l’altitude, la relation est plus faible. Elle est non significative avec un risque d’erreur à 5%. On peut conclure à l’existence d’une relation avec un risque d’erreur de 6%.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="modélisation-de-la-relation-et-analyse-des-résidus" class="slide level2">
+<h2>5/ Modélisation de la relation et analyse des résidus</h2>
+<div class="etapes">
+<p><span style="opacity:0.25">Nuage de points   ⭢   Hypothèses   ⭢   Calcul du <em>r</em>   ⭢   Significativité   ⭢</span>   <strong>Modélisation</strong></p>
+</div>
+<p>Si relation, possibilité de réaliser une régression (y = ax + b) pour résumer, modéliser, prévoir…</p>
+<p>Sous R :</p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>lm_result <span class="ot">&lt;-</span> <span class="fu">lm</span>(preci<span class="sc">$</span>preci_Y_5180 <span class="sc">~</span> preci<span class="sc">$</span>latitude )</span>
+<span id="cb11-2"><a href="#cb11-2"></a>lm_result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = preci$preci_Y_5180 ~ preci$latitude)
+
+Coefficients:
+   (Intercept)  preci$latitude  
+        2389.2          -127.1  </code></pre>
+</div>
+</div>
+<div class="callout callout-note no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Lecture</strong></p>
+</div>
+<div class="callout-content">
+<p>Les deux coefficients affichés sont l’ordonnée à l’origine (<em>b</em> ; ici [(Intercept)]) et la pente (<em>a</em>) de l’équation <span class="math inline">\(y = a.x + b\)</span>.</p>
+<p>D’après le modèle construit, les précipitations moyennes annuelles seraient d’environ 2390mm à l’équateur, c’est-à-dire à la latitude de 0°. Elles diminueraient de 127mm à chaque degré de latitude vers le nord.</p>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">plot</span>(preci<span class="sc">$</span>preci_Y_5180 <span class="sc">~</span> preci<span class="sc">$</span>latitude) </span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">abline</span>(<span class="fu">lm</span>(preci<span class="sc">$</span>preci_Y_5180 <span class="sc">~</span> preci<span class="sc">$</span>latitude))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
+</div>
+</div>
+<p>Le modèle Préci~Lat a un coefficient <span class="math inline">\(r\)</span> de -0.82, donc un coefficient de détermination <span class="math inline">\(r^2\)</span> de 0.67 : 67% de la variation des précipitations sont liées à la latitude.</p>
+</div>
+</div>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<h3 id="analyse-des-résidus">Analyse des résidus</h3>
+<p>analyse très importante des résidus et de leur répartition spatiale =&gt; reflet de spécificités locales et/ou importance d’autres fact. explicatifs</p>
+<p>=&gt; en l’occurrence, ici, pas top !</p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="htmlwidget-1c1b015a2d6020c8bd44" style="width:600px;height:300px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1c1b015a2d6020c8bd44">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"Précipitations : NOAA GHCN"}]},{"method":"addCircleMarkers","args":[[11.13,10.32,8.87,7.98,6.35,9.5,7.38,7.68,6.13,6.65,5.25,5.28,4.42,4.95,14.22,14.9,13.5,13.8,8.98,7.58,6.58,6.17,14.03,12.35,12.07,11.67,11.73,10.33],[2.93,1.48,2.6,2.43,2.38,-7.57,-7.38,-5.03,-5.95,-4.7,-3.93,-3.3,-7.37,-6.08,1.45,5.25,2.13,5.25,1.13,1.12,1.5,1.25,0.05,1.52,0.35,-4.3,-2.92,-3.18],8,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":1,"opacity":0.5,"fill":true,"fillColor":["#B8D8E9","#549CC8","#F6F7F7","#FBCAB0","#FBC8AF","#2267AD","#96C7DF","#F9BA9D","#FBE6DA","#EB8F70","#286DB0","#2F75B4","#053061","#E9F0F4","#FAEDE6","#F8F3EF","#F8F4F2","#F6F6F7","#A2CDE2","#FAEAE1","#C03837","#67001F","#F7F7F7","#D6E7F1","#C8E0ED","#7AB4D5","#D6E7F1","#DFEBF3"],"fillOpacity":1},null,null,null,null,["KANDI","NATITINGOU","TCHAOUROU","SAVE","COTONOU","ODIENNE","MAN","BOUAKE","GAGNOA","DIMBOKRO","ABIDJAN","ADIAKE","TABOU","SASSANDRA","TILLABERY","TAHOUA","NIAMEY AERO","BIRNI N'KONNI","SOKODE","ATAKPANE","TABLIGBO","LOME","DORI","OUAGADOUGOU","FADA N'GOURMA","BOBO-DIOULASSO","BOROMO","GAOUA"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#67001F , #A11228 7.75669141065871%, #E1795F 23.4785246185274%, #FDD7C1 39.2003578263961%, #E4EEF4 54.9221910342648%, #8DC2DC 70.6440242421335%, #3076B4 86.3658574500022%, #053061 "],"labels":["-600","-400","-200","0","200","400"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"numeric","title":"Résidus <br> de la relation <br> Préci ~ Lat <br> (en mm)","extra":{"p_1":0.0775669141065871,"p_n":0.863658574500022},"layerId":null,"className":"info legend","group":null}]}],"limits":{"lat":[4.42,14.9],"lng":[-7.57,5.25]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div class="source">
+<p>Sources : NOAA GHCN, OpenStreetMap, SRTM, OpenTopoMap (CC-BY-SA)</p>
+</div>
+<div class="callout callout-warning callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Conditions d’application</strong></p>
+</div>
+<div class="callout-content">
+<p>Pour au moins une des 2 variables, distribution normale et variance constante…</p>
+</div>
+</div>
+</div>
+<p>[non finalisé]</p>
+</section></section>
+<section id="des-questions-des-remarques" class="title-slide slide level1 center">
+<h1>Des questions ? <br> Des remarques ?</h1>
+
+</section>
+
+<section>
+<section id="ql-ql-relation-entre-deux-variables-qualitatives" class="title-slide slide level1 center" data-background-image="img/template_diapo_EECIST_partie.png" data-background-size="cover">
+<h1>[Ql-Ql] <br> Relation entre deux variables qualitatives</h1>
+
+</section>
+<section id="la-question-quon-se-pose-1" class="slide level2">
+<h2>La question qu’on se pose…</h2>
+<table>
+<caption>Tableau élémentaire</caption>
+<thead>
+<tr class="header">
+<th>Individus</th>
+<th style="text-align: center;">X <br> (qualitative)</th>
+<th style="text-align: center;">Y <br> (qualitative)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td style="text-align: center;">X<sub>1</sub></td>
+<td style="text-align: center;">Y<sub>1</sub></td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+</tr>
+<tr class="odd">
+<td>i</td>
+<td style="text-align: center;">X<sub>i</sub></td>
+<td style="text-align: center;">Y<sub>i</sub></td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+</tr>
+<tr class="odd">
+<td>n</td>
+<td style="text-align: center;">X<sub>n</sub></td>
+<td style="text-align: center;">Y<sub>n</sub></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="fragment">
+<div class="message">
+<p>est-ce que les modalités de Y sont réparties</p>
+<p>de façon non aléatoire entre les modalités de X ?</p>
+</div>
+</div>
+</section>
+<section id="exemple-dapplication-le-marché-de-bouaké" class="slide level2">
+<h2>Exemple d’application : le marché de Bouaké</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/Bouake.png"></p>
+</figure>
+</div>
+</div><div class="column" style="width:70%;">
+<div class="cell">
+
+</div>
+<div>
+<ul>
+<li class="fragment"><p>à partir du tableau de données d’entrée de camion au marché de Bouaké (plus d’<a href="lien">info</a>)</p></li>
+<li class="fragment"><p>Source : <span style="font-size:0.8em">Bamba V., 2019. <em>Transport et approvisionnement du marché de gros de Bouaké en produits vivriers</em>. Thèse de Géographie, Université FHB de Cocody, Côte d’Ivoire.</span></p></li>
+<li class="fragment"><p>traitements sur les données initiales : regroupement des produits en grandes catégories (ex. igname), sélection des principaux produits et modes de transport</p></li>
+<li class="fragment"><p>le jeu de données extrait comprend 1409 enregistrements, soit 73% du jeu initial.</p></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> code </th>
+   <th style="text-align:left;"> produit </th>
+   <th style="text-align:left;"> transport </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> igname </td>
+   <td style="text-align:left;"> camion </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:left;"> igname </td>
+   <td style="text-align:left;"> camion </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> igname </td>
+   <td style="text-align:left;"> camion </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:left;"> arachide </td>
+   <td style="text-align:left;"> voiture </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 13 </td>
+   <td style="text-align:left;"> riz </td>
+   <td style="text-align:left;"> pick-up </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:left;"> igname </td>
+   <td style="text-align:left;"> camion </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> riz </td>
+   <td style="text-align:left;"> camion </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> igname </td>
+   <td style="text-align:left;"> camion </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> igname </td>
+   <td style="text-align:left;"> camion </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> arachide </td>
+   <td style="text-align:left;"> voiture </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="quels-sont-les-modes-de-transports-par-types-de-produits-et-inversement" class="slide level2">
+<h2>Quels sont les modes de transports par types de produits ? <br> et inversement ?</h2>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggplot</span>(bouake, </span>
+<span id="cb14-2"><a href="#cb14-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> produit, </span>
+<span id="cb14-3"><a href="#cb14-3"></a>           <span class="at">fill =</span> transport)) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>)) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"stack"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></p>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(bouake, </span>
+<span id="cb15-2"><a href="#cb15-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> transport, </span>
+<span id="cb15-3"><a href="#cb15-3"></a>           <span class="at">fill =</span> produit)) <span class="sc">+</span> </span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>)) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"stack"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="message">
+<p>existe-t-il une relation entre le mode de transport et le type de produit ?</p>
+</div>
+</div>
+<div class="fragment">
+<div class="message">
+<p>=&gt; test du <span class="math inline">\(\chi^2\)</span> (chi2 ou khi2)</p>
+</div>
+</div>
+<div class="fragment">
+<div class="etapes">
+<p>Tab. contingence &amp; mosaïque   ⭢   Hypothèses   ⭢   <span class="math inline">\(\chi2\)</span> observé   ⭢   Significativité</p>
+</div>
+</div>
+</section>
+<section id="tableau-de-contingence-et-graphique-en-mosaïque" class="slide level2">
+<h2>1/ Tableau de contingence et graphique en mosaïque</h2>
+<div class="etapes">
+<p><strong>Tab. contingence &amp; mosaïque</strong>   <span style="opacity:0.25">⭢   Hypothèses   ⭢   <span class="math inline">\(\chi2\)</span> observé   ⭢   Significativité</span></p>
+</div>
+<p>Le <strong>tableau de contingence</strong> est un tableau de dénombrement : il répertorie le nombre d’individus avec la modalité <span class="math inline">\(i\)</span> de la première variable qualitative <span class="math inline">\(X\)</span> et la modalité <span class="math inline">\(j\)</span> de la seconde variable <span class="math inline">\(Y\)</span>.</p>
+<div style="font-size:0.9em">
+<table>
+<caption>Tableau de contingence</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Y<sub>1</sub></th>
+<th style="text-align: center;">…</th>
+<th style="text-align: center;">Y<sub>j</sub></th>
+<th style="text-align: center;">…</th>
+<th style="text-align: center;">Y<sub>p</sub></th>
+<th><span class="math inline">\(\sum\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">X<sub>1</sub></td>
+<td style="text-align: center;">N<sub>11</sub></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">N<sub>1j</sub></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">N<sub>1p</sub></td>
+<td>N<sub>1.</sub></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">…</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">X<sub>i</sub></td>
+<td style="text-align: center;">N<sub>i1</sub></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">N<sub>ij</sub></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">N<sub>ip</sub></td>
+<td>N<sub>i.</sub></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">…</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">X<sub>k</sub></td>
+<td style="text-align: center;">N<sub>k1</sub></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">N<sub>kj</sub></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">N<sub>kp</sub></td>
+<td>N<sub>k.</sub></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\sum\)</span></td>
+<td style="text-align: center;">N<sub>.1</sub></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">N<sub>.j</sub></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">N<sub>.p</sub></td>
+<td>N<sub>..</sub></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment">
+<p>Pour aller au-delà de ce tableau de contingence, on calcule des <strong>profils en ligne</strong> <span class="math inline">\(N'_{ij} = \frac{N_{ij}}{N_{i.}}\)</span> et <strong>en colonne</strong> <span class="math inline">\(N''_{ij} = \frac{N_{ij}}{N_{.j}}\)</span> qui donnent une idée sur la forme de la relation, ainsi que le tableau des <strong>fréquences</strong> <span class="math inline">\(\frac{N_{ij}}{N_{..}}\)</span>.</p>
+</div>
+</section>
+<section id="sur-lexemple-de-bouaké" class="slide level2">
+<h2>Sur l’exemple de Bouaké</h2>
+<div class="columns">
+<div class="column">
+<p>Le tableau de contingence :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>tabconting <span class="ot">&lt;-</span> <span class="fu">table</span>(bouake<span class="sc">$</span>produit, bouake<span class="sc">$</span>transport) </span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">addmargins</span>(tabconting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          
+           camion pick-up voiture  Sum
+  arachide     48      85     285  418
+  igname      304     177      11  492
+  mais         68     141     102  311
+  riz          53      82      53  188
+  Sum         473     485     451 1409</code></pre>
+</div>
+</div>
+<div class="callout callout-note no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Lecture</strong></p>
+</div>
+<div class="callout-content">
+<p>304 entrées enregistrées sont le produit <em>igname</em>, transporté par <em>camion</em>.</p>
+<p><em>Sum</em> est la somme (soit par colonne, soit par ligne).</p>
+</div>
+</div>
+</div>
+<div class="callout callout-tip no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Quizz</strong></p>
+</div>
+<div class="callout-content">
+<p>Quel est le nombre d’enregistrements de <em>mais</em> transportés par un <em>pick up</em> ?</p>
+</div>
+</div>
+</div>
+</div><div class="column fragment">
+<p>Profils en ligne :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>profils_ligne <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(tabconting, <span class="dv">1</span>)</span>
+<span id="cb18-2"><a href="#cb18-2"></a>profils_ligne <span class="ot">&lt;-</span> <span class="fu">round</span>(profils_ligne<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>) </span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">addmargins</span>(profils_ligne, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          
+           camion pick-up voiture   Sum
+  arachide   11.5    20.3    68.2 100.0
+  igname     61.8    36.0     2.2 100.0
+  mais       21.9    45.3    32.8 100.0
+  riz        28.2    43.6    28.2 100.0</code></pre>
+</div>
+</div>
+<div class="callout callout-note no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Lecture</strong></p>
+</div>
+<div class="callout-content">
+<p>Le produit <em>arachide</em> est transporté à 68.2% par <em>voiture</em> et à 20.3% par <em>pick-up</em>.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>Profils en colonne :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>profils_col <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(tabconting, <span class="dv">2</span>)</span>
+<span id="cb20-2"><a href="#cb20-2"></a>profils_col <span class="ot">&lt;-</span> <span class="fu">round</span>(profils_col<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>) </span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="fu">addmargins</span>(profils_col, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          
+           camion pick-up voiture
+  arachide   10.1    17.5    63.2
+  igname     64.3    36.5     2.4
+  mais       14.4    29.1    22.6
+  riz        11.2    16.9    11.8
+  Sum       100.0   100.0   100.0</code></pre>
+</div>
+</div>
+<div class="callout callout-note no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Lecture</strong></p>
+</div>
+<div class="callout-content">
+<p>Le produit <em>riz</em> représente 16.9% du transport par <em>pick-up</em>.</p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<p>Tableau des fréquences :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>tab_freq <span class="ot">&lt;-</span> <span class="fu">round</span>(tabconting<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span><span class="fu">sum</span>(tabconting), <span class="dv">1</span>)</span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">addmargins</span>(tab_freq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          
+           camion pick-up voiture   Sum
+  arachide    3.4     6.0    20.2  29.6
+  igname     21.6    12.6     0.8  35.0
+  mais        4.8    10.0     7.2  22.0
+  riz         3.8     5.8     3.8  13.4
+  Sum        33.6    34.4    32.0 100.0</code></pre>
+</div>
+</div>
+<div class="callout callout-note no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Lecture</strong></p>
+</div>
+<div class="callout-content">
+<p>Le produit <em>mais</em> transporté par <em>camion</em> représente 4.8% des effectifs.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="le-graphique-en-mosaïque" class="slide level2">
+<h2>Le graphique en mosaïque</h2>
+<p>Le graphique en mosaïque (ou le graphique Marimekko / Mekko) représente la proportion des individus pour toute combinaison/croisement de données qualitatives, par des rectangles dont la superficie est proportionnelle à cette proportion.</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p>Sous R (base)<sup>1</sup> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">mosaicplot</span>(produit <span class="sc">~</span> transport, </span>
+<span id="cb24-2"><a href="#cb24-2"></a>           <span class="at">data =</span> bouake,</span>
+<span id="cb24-3"><a href="#cb24-3"></a>           <span class="at">color =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb24-4"><a href="#cb24-4"></a>           <span class="at">main =</span> <span class="st">"Mosaic plot de Bouaké"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-tip no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Quizz</strong></p>
+</div>
+<div class="callout-content">
+<p>Quelles combinaisons <em>transport-produit</em> sont les fréquentes ? les moins fréquentes ?</p>
+<p>Qu’en déduisez-vous ?</p>
+</div>
+</div>
+</div>
+</div><div class="column" style="margin:0; vertical-align: top">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-29-1.png" width="576"></p>
+</div>
+</div>
+</div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>1. C’est également possible avec <a href="https://cran.r-project.org/web/packages/ggmosaic/vignettes/ggmosaic.html">ggmosaic</a> pour ggplot.</p></li></ol></aside></section>
+<section id="le-graphique-en-mosaïque-1" class="slide level2">
+<h2>Le graphique en mosaïque</h2>
+<p>Le graphique en mosaïque (ou le graphique Marimekko / Mekko) représente la proportion des individus pour toute combinaison/croisement de données qualitatives, par des rectangles dont la superficie est proportionnelle à cette proportion.</p>
+
+<img data-src="img/Ql_Ql.png" class="r-stretch quarto-figure-center"><div class="fragment">
+<div class="absolute" style="top: 85%; left: 10%; ">
+<div style="color:#594993; text-align:center; font-size: 2em">
+<p><strong>indépendance</strong></p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 85%; left: 75%; ">
+<div style="color:#594993; text-align:center; font-size: 2em">
+<p><strong>relation ?</strong></p>
+</div>
+</div>
+</div>
+</section>
+<section id="formulation-des-hypothèses-1" class="slide level2">
+<h2>2/ Formulation des hypothèses</h2>
+<div class="etapes">
+<p><span style="opacity:0.25">Tab. contingence &amp; mosaïque   ⭢</span>   <strong>Hypothèses</strong>   <span style="opacity:0.25">⭢   <span class="math inline">\(\chi2\)</span> observé   ⭢   Significativité</span></p>
+</div>
+<p><br></p>
+<p>H<sub>0</sub> (hypothèse nulle) : indépendance entre les 2 variables</p>
+<p>H<sub>1</sub> (hypothèse alternative) : non indépendance (relation)</p>
+<div class="fragment">
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>Pour Bouaké,</p>
+<p>H<sub>0</sub> : indépendance entre le mode de transport et le type de produit</p>
+<p>H<sub>1</sub> : il existe une relation entre le mode de transport et le type de produit</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<div class="message">
+<p>Il s’agit à présent de confirmer ou d’infirmer l’hypothèse H<sub>0</sub>.</p>
+</div>
+</div>
+</section>
+<section id="calcul-du-chi2-observé" class="slide level2">
+<h2>3/ Calcul du <span class="math inline">\(\chi2\)</span> observé</h2>
+<div class="etapes">
+<p><span style="opacity:0.25">Tab. contingence &amp; mosaïque   ⭢   Hypothèses   ⭢</span>   <strong><span class="math inline">\(\chi2\)</span> observé</strong>   <span style="opacity:0.25">⭢   Significativité</span></p>
+</div>
+
+<img data-src="img/Ql_Ql.png" style="width:5.0%" class="r-stretch quarto-figure-center"><p>Calcul des effectifs théoriques : <span class="math inline">\(N^*_{ij} = \frac{ N_{i.} . N_{j.}}{ N_{..}}\)</span> et des écarts à l’indépendance : <span class="math inline">\(DEV_{ij} = N_{ij} - N^*_{ij}\)</span></p>
+<p>Puis calcul du <span class="math inline">\(\chi^2\)</span> observé, qui est la somme des <span class="math inline">\(\chi_{ij}^2\)</span> locaux :</p>
+<p><span class="math display">\[\chi^2 obs. = \sum_{i=1,j=1}^{k,p} \chi_{ij}^2 = \sum_{1,1}^{k,p} \frac{DEV_{i,j}^2}{N^*_{i,j}}\]</span></p>
+</section>
+<section id="vérification-de-la-significativité-1" class="slide level2">
+<h2>4/ Vérification de la significativité</h2>
+<div class="etapes">
+<p><span style="opacity:0.25">Tab. contingence &amp; mosaïque   ⭢   Hypothèses   ⭢   <span class="math inline">\(\chi2\)</span> observé   ⭢</span>   <strong>Significativité</strong></p>
+</div>
+<p>Pour risque d’erreur <span class="math inline">\(\alpha\)</span> fixé et avec un degré de liberté <span class="math inline">\(ddl = (k-1).(p-1)\)</span> :</p>
+<ul>
+<li><p>si <span class="math inline">\(\chi^2 observé &gt; \chi^2 table\)</span>, alors H<sub>0</sub> rejetée : les deux variables ne sont pas indépendantes, on peut conclure à l’existence d’une relation</p></li>
+<li><p>si <span class="math inline">\(\chi^2 observé &lt; \chi^2 table\)</span>, alors on ne peut rejeter H<sub>0</sub>, on ne peut conclure à l’existence d’une relation</p></li>
+</ul>
+<p><br></p>
+<div class="callout callout-warning callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Conditions d’application</strong></p>
+</div>
+<div class="callout-content">
+<p>Le test du <span class="math inline">\(\chi2\)</span> est un test <strong>paramétrique</strong>, qui doit respecter plusieurs conditions :</p>
+<p><span class="math inline">\(N_{ij}&gt;20\)</span></p>
+<p><span class="math inline">\(N_{i.}\)</span> ou <span class="math inline">\(N_{.j}&gt;5\)</span></p>
+<p><span class="math inline">\(N_{ij}^*&gt;5\)</span> dans 80% des cas</p>
+<p>Pour les petits échantillons, il est possible d’utiliser le <strong><a href="https://fr.wikipedia.org/wiki/Test_exact_de_Fisher">test exact de Fisher</a></strong> (sous R : <em><code>fisher.test()</code></em>).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sous-r-étapes-3-et-4" class="slide level2">
+<h2>Sous R, étapes 3 et 4</h2>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>resu_chi2 <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(tabconting)</span>
+<span id="cb25-2"><a href="#cb25-2"></a>resu_chi2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  tabconting
+X-squared = 539.63, df = 6, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="callout callout-note no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Lecture</strong></p>
+</div>
+<div class="callout-content">
+<p>Le <strong><span class="math inline">\(\chi2\)</span></strong> observé (<em>X-squared</em>) est de 539.63 et le nombre de degré de liberté (<em>df</em>) de 6.</p>
+<p>La valeur-p (<em>p-value</em>) est la valeur à regarder pour quantifier la significativité statistique, ici pour vérifier l’existence ou non de la relation.</p>
+<p>Si la <em>p-value</em> est inférieure à 0.05, alors on peut rejeter l’hypothèse d’indépendance H<sub>0</sub> avec un risque inférieur à 5% et donc conclure à l’existence d’une relation.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>Les résultats du test du <span class="math inline">\(\chi2\)</span> comprennent aussi…</p>
+<div class="columns">
+<div class="column">
+<p>… les effectifs théoriques</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>resu_chi2<span class="sc">$</span>expected</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          
+              camion   pick-up   voiture
+  arachide 140.32221 143.88219 133.79560
+  igname   165.16395 169.35415 157.48190
+  mais     104.40241 107.05110  99.54649
+  riz       63.11143  64.71256  60.17601</code></pre>
+</div>
+</div>
+</div><div class="column">
+<p>et les écarts à l’indépendance :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>resu_chi2<span class="sc">$</span>residuals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          
+                camion     pick-up     voiture
+  arachide  -7.7936877  -4.9088573  13.0720444
+  igname    10.8030065   0.5875269 -11.6726280
+  mais      -3.5626643   3.2811806   0.2459096
+  riz       -1.2727949   2.1489996  -0.9250632</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="pour-aller-plus-loin-quel-est-le-sens-de-la-relation" class="slide level2">
+<h2>Pour aller plus loin, quel est le sens de la relation ?</h2>
+<p>Il est possible de colorier les rectangles d’un graphique en mosaïque en fonction du degré de relation entre les variables : le <span style="color:blue">bleu</span> représente plus de cas que prévu étant donné l’indépendance, le <span style="color:red">rouge</span> représente moins de cas que prévu.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">mosaicplot</span>(produit <span class="sc">~</span> transport, <span class="at">data =</span> bouake, <span class="at">shade =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-33-1.png" width="960" class="r-stretch"></section>
+<section id="pour-aller-plus-loin-quelle-est-lintensité-de-la-relation" class="slide level2">
+<h2>Pour aller plus loin, quelle est l’intensité de la relation ?</h2>
+<p>A compléter… avec ex</p>
+<p><span class="math display">\[V_{Cramer} = \sqrt{\frac{\chi^2}{n.ddl}} \]</span></p>
+<p>Plus le <span class="math inline">\(V_{Cramer}\)</span> tend vers 1, plus la relation est forte. Plus c’est vers 0, plus elle est faible.</p>
+<p>Pour l’exemple de Bouaké :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">library</span>(questionr)</span>
+<span id="cb32-2"><a href="#cb32-2"></a><span class="fu">cramer.v</span>(tabconting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4376004</code></pre>
+</div>
+</div>
+<div class="callout callout-note no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Lecture</strong></p>
+</div>
+<div class="callout-content">
+<p>Le V de Cramer est ici de 0.44, la relation est moyenne.</p>
+</div>
+</div>
+</div>
+</section></section>
+<section id="des-questions-des-remarques-1" class="title-slide slide level1 center">
+<h1>Des questions ? <br> Des remarques ?</h1>
+
+</section>
+
+<section>
+<section id="qn-ql-relation-entre-une-variable-quantitative-et-une-qualitative" class="title-slide slide level1 center" data-background-image="img/template_diapo_EECIST_partie.png" data-background-size="cover">
+<h1>[Qn-Ql] <br> Relation entre une variable quantitative et une qualitative</h1>
+
+</section>
+<section id="la-question-quon-se-pose-2" class="slide level2">
+<h2>La question qu’on se pose…</h2>
+<table>
+<caption>Tableau élémentaire</caption>
+<thead>
+<tr class="header">
+<th>Individus</th>
+<th style="text-align: center;">X <br> (qualitative)</th>
+<th style="text-align: center;">Y <br> (quantitative)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td style="text-align: center;">X<sub>1</sub></td>
+<td style="text-align: center;">Y<sub>1</sub></td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+</tr>
+<tr class="odd">
+<td>i</td>
+<td style="text-align: center;">X<sub>i</sub></td>
+<td style="text-align: center;">Y<sub>i</sub></td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+</tr>
+<tr class="odd">
+<td>n</td>
+<td style="text-align: center;">X<sub>n</sub></td>
+<td style="text-align: center;">Y<sub>n</sub></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="fragment">
+<div class="message">
+<p>est-ce que les valeurs de Y sont liées aux modalités de X ?</p>
+</div>
+</div>
+</section>
+<section id="la-question-quon-se-pose-3" class="slide level2">
+<h2>La question qu’on se pose…</h2>
+<div class="message">
+<p>est-ce que les valeurs de Y sont liées aux modalités de X ?</p>
+</div>
+<div class="r-stack">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/QlQn_Egal.png"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/QlQn_Diff.png" class="fragment"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="exemple-dapplication-îlot-de-chaleur-à-lagos" class="slide level2">
+<h2>Exemple d’application : îlot de chaleur à Lagos</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>L<strong>’îlot de chaleur urbain</strong> : températures de l’air la nuit plus élevées dans le centre des villes qu’à l’extérieur.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/ICU_Oke.png"></p>
+</figure>
+</div>
+<div class="source">
+<p>Oke <em>et al.</em>, 2017</p>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Autour de Lagos (~ 15 millions d’habitants, près de 23 millions pour l’agglomération)</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-00482ace4b15e8e5b1a7" style="width:480px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-00482ace4b15e8e5b1a7">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addMiniMap","args":[null,"OpenStreetMap","topright",100,100,19,19,-6,false,false,false,false,false,false,{"color":"#ff7800","weight":1,"clickable":false},{"color":"#000000","weight":1,"clickable":false,"opacity":0,"fillOpacity":0},{"hideText":"Hide MiniMap","showText":"Show MiniMap"},[]]}],"setView":[[6.724524,3.302154],9,[]]},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="exemple-dapplication-deux-sources-utilisées" class="slide level2">
+<h2>Exemple d’application : deux sources utilisées</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>LST - Températures nocturnes de surface :</strong></p>
+<ul>
+<li><p>satellite MODIS Terra</p></li>
+<li><p><em>Land Surface Temperature</em> (MOD11A1)</p></li>
+<li><p>1 nuit sélectionnée : 7/1/2023</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="img/Terra_spacecraft_model.png" style="width:50.0%"></p>
+</figure>
+</div>
+<div class="source">
+<p><a href="https://science.nasa.gov/get-involved/toolkits/spacecraft-icons">NASA</a> (domaine public)</p>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>LCZ - <em>Local Climate Zones</em> :</strong></p>
+<p>Demuzere <em>et al.</em>, 2022</p>
+<p><a href="https://doi.org/10.5281/zenodo.7324909"><img data-src="https://zenodo.org/badge/DOI/10.5281/zenodo.7324909.svg" alt="DOI"></a> <img data-src="img/LCZ_Stewart_Bechtel2.png" style="width:72.0%"></p>
+<div class="source">
+<p>Bechtel <em>et al.</em>, 2017</p>
+</div>
+</div>
+</div>
+</section>
+<section id="ex.-dapplication-répartitions-spatiales-des-lst-et-lcz" class="slide level2">
+<h2>Ex. d’application : répartitions spatiales des LST et LCZ</h2>
+<p><strong>Autour de Lagos</strong></p>
+
+<img data-src="img/Lagos_LST_LCZ.png" style="width:100.0%" class="r-stretch quarto-figure-center"></section>
+<section id="ex.-dapplication-répartitions-spatiales-des-lst-et-lcz-1" class="slide level2">
+<h2>Ex. d’application : répartitions spatiales des LST et LCZ</h2>
+<p><strong>Tableau de données</strong></p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+
+<table class="table" style="font-size: 18px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> lat </th>
+   <th style="text-align:right;"> lon </th>
+   <th style="text-align:right;"> LST </th>
+   <th style="text-align:right;"> LCZ </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 6.77 </td>
+   <td style="text-align:right;"> 3.69 </td>
+   <td style="text-align:right;color: white !important;background-color: #333399 !important;"> 21.67 </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 6.77 </td>
+   <td style="text-align:right;"> 3.65 </td>
+   <td style="text-align:right;color: white !important;background-color: #333399 !important;"> 21.97 </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 6.77 </td>
+   <td style="text-align:right;"> 3.64 </td>
+   <td style="text-align:right;color: white !important;background-color: #333399 !important;"> 22.17 </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 6.77 </td>
+   <td style="text-align:right;"> 3.67 </td>
+   <td style="text-align:right;color: white !important;background-color: #333399 !important;"> 21.69 </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 6.77 </td>
+   <td style="text-align:right;"> 3.66 </td>
+   <td style="text-align:right;color: white !important;background-color: #333399 !important;"> 21.85 </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 6.77 </td>
+   <td style="text-align:right;"> 3.72 </td>
+   <td style="text-align:right;color: white !important;background-color: #333399 !important;"> 21.03 </td>
+   <td style="text-align:right;color: white !important;background-color: #990033 !important;"> 11 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div><div class="column fragment" style="width:70%;">
+<div class="message">
+<p>comment les valeurs de LST varient</p>
+<p>en fonction des modalités des LCZ ?</p>
+</div>
+<p><br></p>
+<div class="message">
+<p>peut-on confirmer l’existence</p>
+<p>d’une relation entre LST et LCZ ?</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><strong>Pour les tests paramétriques :</strong></p>
+<ul>
+<li><p>variable qualitative à 2 modalités : test du Student (comparaison de moyenne)</p></li>
+<li><p>variable Ql à + de 2 modalités : analyse de la variance et test de Fisher</p></li>
+</ul>
+<p>Les deux reposant sur les mêmes étapes :</p>
+<div class="etapes2">
+<p>Graphique (boxplot)   ⭢   Hypothèses   ⭢   Calcul du T ou F observé   ⭢   Significativité   ⭢   Sens</p>
+</div>
+</div>
+</section>
+<section id="graphique-des-variations-de-y-selon-les-modalités-de-x" class="slide level2">
+<h2>1/ Graphique des variations de Y selon les modalités de X</h2>
+<div class="etapes2">
+<p><strong>Graphique (boxplot)</strong>   <span style="opacity:0.25">⭢   Hypothèses   ⭢   Calcul du T ou F observé   ⭢   Significativité   ⭢   Sens</span></p>
+</div>
+<p><br> Rappel : l’objectif est de visualiser la distribution de la variable quantitative selon les modalités de la variable qualitative.</p>
+<h3 id="boxplot-ou-boîte-à-moustache"><strong>Boxplot</strong> (ou boîte à moustache)</h3>
+
+<img data-src="img/boxplot.png" class="r-stretch"><div class="source">
+<p>Wikimedia Commons, Jumanbar, CC BY-SA 3.0</p>
+</div>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<h3 id="boxplot-ou-boîte-à-moustache-1"><strong>Boxplot</strong> (ou boîte à moustache)</h3>
+<p>à partir du jeu de données <code>R</code> <em>airquality</em></p>
+<p>(Daily air quality measurements in New York, May to September 1973)</p>
+<div class="columns">
+<div class="column fragment">
+<p>Avec <code>R-base</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">boxplot</span>(airquality<span class="sc">$</span>Ozone <span class="sc">~</span> airquality<span class="sc">$</span>Month,</span>
+<span id="cb34-2"><a href="#cb34-2"></a>        <span class="at">xlab=</span><span class="st">"Var. Ql : mois"</span>, </span>
+<span id="cb34-3"><a href="#cb34-3"></a>        <span class="at">ylab=</span><span class="st">"Var. Qn : Concentrations en ozone (en ppm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-37-1.png" width="960"></p>
+</div>
+</div>
+</div><div class="column fragment">
+<p>Avec <code>ggplot2</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">ggplot</span>(airquality, </span>
+<span id="cb35-2"><a href="#cb35-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(Month), </span>
+<span id="cb35-3"><a href="#cb35-3"></a>           <span class="at">y =</span> Ozone)) <span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a>  <span class="fu">xlab</span>(<span class="st">"Var. Ql : Mois"</span>) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5"></a>  <span class="fu">ylab</span>(<span class="st">"Var. Qn : Concentrations en ozone (en ppm)"</span>) <span class="sc">+</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a>  <span class="fu">geom_boxplot</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-38-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<h3 id="boxplot-ou-boîte-à-moustache---variantes"><strong>Boxplot</strong> (ou boîte à moustache) - variantes</h3>
+<div class="columns">
+<div class="column fragment">
+<p>Boxplot “à encoches”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(Month), </span>
+<span id="cb36-2"><a href="#cb36-2"></a>              <span class="at">y =</span> Ozone)) <span class="sc">+</span></span>
+<span id="cb36-3"><a href="#cb36-3"></a>    <span class="fu">xlab</span>(<span class="st">"Var. Ql : Mois"</span>) <span class="sc">+</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a>  <span class="fu">ylab</span>(<span class="st">"Var. Qn : Concentrations en ozone (en ppm)"</span>) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb36-6"><a href="#cb36-6"></a>               <span class="at">fill =</span> <span class="st">"cornflowerblue"</span>, </span>
+<span id="cb36-7"><a href="#cb36-7"></a>               <span class="at">alpha =</span> .<span class="dv">7</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-39-1.png" width="960"></p>
+</div>
+</div>
+</div><div class="column fragment">
+<p>Boxplot “violon”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">ggplot</span>(airquality, </span>
+<span id="cb37-2"><a href="#cb37-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(Month), </span>
+<span id="cb37-3"><a href="#cb37-3"></a>           <span class="at">y =</span> Ozone)) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a>      <span class="fu">xlab</span>(<span class="st">"Var. Ql : Mois"</span>) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="#cb37-5"></a>  <span class="fu">ylab</span>(<span class="st">"Var. Qn : Concentrations en ozone (en ppm)"</span>) <span class="sc">+</span></span>
+<span id="cb37-6"><a href="#cb37-6"></a>  <span class="fu">geom_violin</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-40-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<h3 id="autres-variantes-pour-visualiser-la-distribution-dune-var.-qn-selon-les-modalités-dune-var.-ql">Autres variantes pour visualiser la distribution d’une var. Qn selon les modalités d’une var. Ql</h3>
+<div class="columns">
+<div class="column fragment">
+<p>Les lignes de crête <em>Ridgeline plot</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb38-2"><a href="#cb38-2"></a><span class="fu">ggplot</span>(airquality, </span>
+<span id="cb38-3"><a href="#cb38-3"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Ozone, </span>
+<span id="cb38-4"><a href="#cb38-4"></a>               <span class="at">y =</span> <span class="fu">as.factor</span>(Month),</span>
+<span id="cb38-5"><a href="#cb38-5"></a>               <span class="at">fill =</span> <span class="fu">as.factor</span>(Month))) <span class="sc">+</span></span>
+<span id="cb38-6"><a href="#cb38-6"></a>      <span class="fu">ylab</span>(<span class="st">"Var. Ql : Mois"</span>) <span class="sc">+</span></span>
+<span id="cb38-7"><a href="#cb38-7"></a>  <span class="fu">xlab</span>(<span class="st">"Var. Qn : Concentrations en ozone (en ppm)"</span>) <span class="sc">+</span></span>
+<span id="cb38-8"><a href="#cb38-8"></a>  <span class="fu">geom_density_ridges</span>() <span class="sc">+</span> </span>
+<span id="cb38-9"><a href="#cb38-9"></a>  <span class="fu">theme_ridges</span>() <span class="sc">+</span></span>
+<span id="cb38-10"><a href="#cb38-10"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-41-1.png" width="960"></p>
+</div>
+</div>
+</div><div class="column fragment">
+<p>Les “gigues” <em>Jitter plot</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">ggplot</span>(airquality, </span>
+<span id="cb39-2"><a href="#cb39-2"></a>       <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">as.factor</span>(Month), </span>
+<span id="cb39-3"><a href="#cb39-3"></a>           <span class="at">x =</span> Ozone, </span>
+<span id="cb39-4"><a href="#cb39-4"></a>           <span class="at">color =</span> <span class="fu">as.factor</span>(Month))) <span class="sc">+</span></span>
+<span id="cb39-5"><a href="#cb39-5"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>,</span>
+<span id="cb39-6"><a href="#cb39-6"></a>              <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb39-7"><a href="#cb39-7"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Var. Qn : Concentrations en ozone (en ppm)"</span>,</span>
+<span id="cb39-8"><a href="#cb39-8"></a>       <span class="at">y =</span> <span class="st">"Var. Ql : Mois"</span>) <span class="sc">+</span></span>
+<span id="cb39-9"><a href="#cb39-9"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb39-10"><a href="#cb39-10"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-42-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="section-7" class="slide level2">
+<h2></h2>
+<h3 id="à-partir-de-lexemple-dapplication-sur-lagos">À partir de l’exemple d’application sur Lagos</h3>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="EXP2_statsbivar_files/figure-revealjs/unnamed-chunk-43-1.png" width="960"></p>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> LCZ </th>
+   <th style="text-align:right;"> n </th>
+   <th style="text-align:right;"> médiane </th>
+   <th style="text-align:right;"> moyenne </th>
+   <th style="text-align:right;"> écart-type </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;color: white !important;background-color: #F30008 !important;"> 3 - Compact low-rise </td>
+   <td style="text-align:right;color: white !important;background-color: #F30008 !important;"> 498 </td>
+   <td style="text-align:right;color: white !important;background-color: #F30008 !important;"> 24.9 </td>
+   <td style="text-align:right;color: white !important;background-color: #F30008 !important;"> 24.8 </td>
+   <td style="text-align:right;color: white !important;background-color: #F30008 !important;"> 0.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;color: white !important;background-color: #FC6347 !important;"> 6 - Open low-rise </td>
+   <td style="text-align:right;color: white !important;background-color: #FC6347 !important;"> 1056 </td>
+   <td style="text-align:right;color: white !important;background-color: #FC6347 !important;"> 24.1 </td>
+   <td style="text-align:right;color: white !important;background-color: #FC6347 !important;"> 24.0 </td>
+   <td style="text-align:right;color: white !important;background-color: #FC6347 !important;"> 0.6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: #B0BEBA !important;"> 8 - Large low-rise </td>
+   <td style="text-align:right;background-color: #B0BEBA !important;"> 114 </td>
+   <td style="text-align:right;background-color: #B0BEBA !important;"> 24.5 </td>
+   <td style="text-align:right;background-color: #B0BEBA !important;"> 24.6 </td>
+   <td style="text-align:right;background-color: #B0BEBA !important;"> 0.7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: #FDB1A4 !important;"> 9 - Sparsely built </td>
+   <td style="text-align:right;background-color: #FDB1A4 !important;"> 1325 </td>
+   <td style="text-align:right;background-color: #FDB1A4 !important;"> 23.1 </td>
+   <td style="text-align:right;background-color: #FDB1A4 !important;"> 23.1 </td>
+   <td style="text-align:right;background-color: #FDB1A4 !important;"> 0.7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;color: white !important;background-color: #0C5A01 !important;"> 11 - Dense trees </td>
+   <td style="text-align:right;color: white !important;background-color: #0C5A01 !important;"> 966 </td>
+   <td style="text-align:right;color: white !important;background-color: #0C5A01 !important;"> 22.3 </td>
+   <td style="text-align:right;color: white !important;background-color: #0C5A01 !important;"> 22.4 </td>
+   <td style="text-align:right;color: white !important;background-color: #0C5A01 !important;"> 0.7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;color: white !important;background-color: #159E04 !important;"> 12 - Scattered trees </td>
+   <td style="text-align:right;color: white !important;background-color: #159E04 !important;"> 1547 </td>
+   <td style="text-align:right;color: white !important;background-color: #159E04 !important;"> 22.2 </td>
+   <td style="text-align:right;color: white !important;background-color: #159E04 !important;"> 22.2 </td>
+   <td style="text-align:right;color: white !important;background-color: #159E04 !important;"> 0.6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;color: white !important;background-color: #3B8C0F !important;"> 13 - Bush, scrub </td>
+   <td style="text-align:right;color: white !important;background-color: #3B8C0F !important;"> 140 </td>
+   <td style="text-align:right;color: white !important;background-color: #3B8C0F !important;"> 22.7 </td>
+   <td style="text-align:right;color: white !important;background-color: #3B8C0F !important;"> 22.7 </td>
+   <td style="text-align:right;color: white !important;background-color: #3B8C0F !important;"> 0.6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: #A4FF4C !important;"> 14 - Low plants </td>
+   <td style="text-align:right;background-color: #A4FF4C !important;"> 577 </td>
+   <td style="text-align:right;background-color: #A4FF4C !important;"> 22.8 </td>
+   <td style="text-align:right;background-color: #A4FF4C !important;"> 22.9 </td>
+   <td style="text-align:right;background-color: #A4FF4C !important;"> 0.7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;color: white !important;background-color: #3C46FD !important;"> 17 - Water </td>
+   <td style="text-align:right;color: white !important;background-color: #3C46FD !important;"> 70 </td>
+   <td style="text-align:right;color: white !important;background-color: #3C46FD !important;"> 24.1 </td>
+   <td style="text-align:right;color: white !important;background-color: #3C46FD !important;"> 24.0 </td>
+   <td style="text-align:right;color: white !important;background-color: #3C46FD !important;"> 0.4 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="message">
+<p>est-ce que les températures de surface sont liées à la typologie LCZ ?</p>
+<p>est-ce que les LCZ expliquent les températures de surface ?</p>
+</div>
+</div>
+</div>
+</section>
+<section id="formulation-des-hypothèses-2" class="slide level2">
+<h2>2/ Formulation des hypothèses</h2>
+<div class="etapes2">
+<p><span style="opacity:0.25">Graphique (boxplot)</span>   ⭢   <strong>Hypothèses</strong>   ⭢   <span style="opacity:0.25">Calcul du T ou F observé   ⭢   Significativité   ⭢   Sens</span></p>
+</div>
+<p><br></p>
+<h3 id="avec-une-variable-qualitative-à-2-modalités-cest-à-dire-dans-le-cas-de-la-comparaison-de-2-moyennes-test-de-student">Avec une variable qualitative à 2 modalités, c’est-à-dire dans le cas de la comparaison de 2 moyennes (test de Student)</h3>
+<p><br></p>
+<p>H<sub>0</sub> (hypothèse nulle) : indépendance entre les 2 variables, égalité des deux moyennes</p>
+<p>H<sub>1</sub> (hypothèse alternative) : non indépendance, moyennes différentes</p>
+</section>
+<section id="formulation-des-hypothèses-3" class="slide level2">
+<h2>2/ Formulation des hypothèses</h2>
+<div class="etapes2">
+<p><span style="opacity:0.25">Graphique (boxplot)</span>   ⭢   <strong>Hypothèses</strong>   ⭢   <span style="opacity:0.25">Calcul du T ou F observé   ⭢   Significativité   ⭢   Sens</span></p>
+</div>
+<p><br></p>
+<h3 id="dans-le-cas-de-lanalyse-de-la-variance-test-de-fisher">Dans le cas de l’analyse de la variance / test de Fisher</h3>
+<p><br></p>
+<p>H<sub>0</sub> (hypothèse nulle) : indépendance entre les 2 variables</p>
+<p>H<sub>1</sub> (hypothèse alternative) : non indépendance</p>
+<div class="fragment">
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>Pour Lagos,</p>
+<p>H<sub>0</sub> : indépendance entre températures de surface et types morphologiques</p>
+<p>H<sub>1</sub> : il existe une relation entre le mode de transport et le type de produit</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<div class="message">
+<p>Il s’agit à présent de confirmer ou d’infirmer l’hypothèse H<sub>0</sub>.</p>
+</div>
+</div>
+</section>
+<section id="calcul-du-t-ou-f-observé" class="slide level2">
+<h2>3/ Calcul du T ou F observé</h2>
+<div class="etapes2">
+<p><span style="opacity:0.25">Graphique (boxplot)   ⭢   Hypothèses   ⭢</span>   <strong>Calcul du T ou F observé</strong>   <span style="opacity:0.25">⭢   Significativité   ⭢   Sens</span></p>
+</div>
+<h3 id="avec-une-variable-qualitative-à-2-modalités-test-de-student-t">Avec une variable qualitative à 2 modalités : <strong>test de Student</strong> (T)</h3>
+<ul>
+<li><strong>Échantillons indépendants</strong></li>
+</ul>
+<p>(ex : 2 catégories, 2 versants, 2 types éco de pays…)</p>
+<p><span class="math display">\[T=\frac{\bar X_A - \bar X_B }{\sqrt{(n_A.\sigma_A^2 + n_B.\sigma_B^2)(\frac{1}{n_A}+\frac{1}{n_B})} }.{\sqrt{(n_A + n_B-2)}}\sim t_{n_A + n_B-2}\]</span></p>
+<div class="fragment">
+<ul>
+<li><strong>Échantillons appariés</strong> (ex : à 2 dates différentes)</li>
+</ul>
+<p><span class="math display">\[T=\frac {\bar D}{\sigma_D}.\sqrt{n-1}\sim t_{n-1}\]</span></p>
+<div style="text-align:center">
+<p>avec <span class="math inline">\(D = X_A - X_B\)</span></p>
+</div>
+</div>
+</section>
+<section id="section-8" class="slide level2">
+<h2></h2>
+<h3 id="avec-une-ql-à-de-2-modalités-analyse-de-la-variance-et-test-de-fisher-f">Avec une Ql à + de 2 modalités : <strong>analyse de la variance et test de Fisher</strong> (F)</h3>
+<ul>
+<li><strong>Décomposition de la variance</strong></li>
+</ul>
+<p>Variance totale = Variance int<strong><span style="color:red">er</span></strong>classes (expliquée) + Variance int<strong><span style="color:red">ra</span></strong>classes (résiduelle)</p>
+<p><span class="math display">\[\sum_{i=1}^{n}(X_i-\bar X)^2 =  \sum_{g=1}^{k}(\bar X_g - \bar X)^2 +  \sum_{g=1}^{k}\sum_{i=1}^{n_g}(X_i-\bar X_g)^2 \]</span></p>
+<p><span style="font-size:16px">la variable quantitative (à expliquer) : <span class="math inline">\(X_i\)</span> ; les modalités de la variable qualitative de <span class="math inline">\(g = 1\)</span> à <span class="math inline">\(k\)</span>.</span></p>
+<div class="r-stack">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/Var_totale.png" class="fragment"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/Var_interclasse.png" class="fragment"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/Var_intraclasse.png" class="fragment"></p>
+</figure>
+</div>
+</div>
+<div class="source">
+<p>D’après Helsel, D.R., Hirsch, R.M. (2002). <em>Statistical methods in water resources</em>. Techniques of Water Resources Investigations. (<a href="https://pubs.usgs.gov/twri/twri4a3/twri4a3.pdf">lien vers le pdf</a>)</p>
+</div>
+</section>
+<section id="section-9" class="slide level2">
+<h2></h2>
+<ul>
+<li><strong>Calcul du F observé (<span style="color:red">“rapport de corrélation”</span>)</strong></li>
+</ul>
+<p><span class="math display">\[F = \frac{\frac{var.intERclasse}{k-1}}{\frac{var.intRAclasse}{n-k}} \sim F_{k-1,n-k}\]</span></p>
+</section>
+<section id="vérification-de-la-significativité-2" class="slide level2">
+<h2>4/ Vérification de la significativité</h2>
+<div class="etapes2">
+<p><span style="opacity:0.25">Graphique (boxplot)   ⭢   Hypothèses   ⭢   Calcul du T ou F observé   ⭢</span>   <strong>Significativité</strong>   <span style="opacity:0.25">⭢   Sens</span></p>
+</div>
+<p><br></p>
+<h3 id="test-de-student-non-finalisé"><strong>Test de Student</strong> [non finalisé]</h3>
+<p>Soit T ~&gt; t (nA-nB-2),</p>
+<p>toujours se ramener à P (T &lt; t)</p>
+<p>Pour unilatéral : P (T &lt; t) = 1 - a</p>
+<p>Pour bilatéral : P (T &lt; t) = 1 - (a/2)</p>
+<div class="callout callout-warning callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Conditions d’application</strong></p>
+</div>
+<div class="callout-content">
+<p>Le test de Student est un test <strong>paramétrique</strong>, qui doit respecter plusieurs conditions :</p>
+<p>- distribution normale de la variable quantitative dans les classes de la variable qualitative (pour vérifier sous R, <code>shapiro.test()</code>)</p>
+<p>- homogénéité des variances (pour vérifier sous R, <code>var.test()</code>, <code>leveneTest()</code>)</p>
+<p>Si cela ne respecte pas ces conditions ou sur des petits échantillons, il est possible d’utiliser le <strong><a href="https://fr.wikipedia.org/wiki/Test_de_Wilcoxon-Mann-Whitney">test de Wilcoxon-Mann-Whitney</a></strong> (sous R : <em><code>wilcox.test()</code></em>) pour 2 échantillons indépendants et le <strong><a href="https://fr.wikipedia.org/wiki/Test_de_Kruskal-Wallis">test de Kruskal-Wallis</a></strong> (sous R : <em><code>kruskal.test()</code></em>) pour 2 appariés.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="section-10" class="slide level2">
+<h2></h2>
+<h3 id="analyse-de-la-variance-et-test-de-fisher"><strong>Analyse de la variance et test de Fisher</strong></h3>
+<p>Pour risque d’erreur <span class="math inline">\(\alpha\)</span> fixé et avec un degré de liberté <span class="math inline">\(ddl = (k-1).(p-1)\)</span> :</p>
+<ul>
+<li><p>si <span class="math inline">\(F observé &gt; F table\)</span>, alors H<sub>0</sub> rejetée : les deux variables ne sont pas indépendantes, on peut conclure à l’existence d’une relation</p></li>
+<li><p>si <span class="math inline">\(F observé &lt; F table\)</span>, alors on ne peut rejeter H<sub>0</sub>, on ne peut conclure à l’existence d’une relation</p></li>
+</ul>
+<p><br></p>
+<div class="fragment">
+<div class="callout callout-warning callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Conditions d’application</strong></p>
+</div>
+<div class="callout-content">
+<p>L’analyse de la variance / test de Fisher est un test <strong>paramétrique</strong>, qui doit respecter plusieurs conditions :</p>
+<p>- distribution normale de la variable quantitative dans les classes de la variable qualitative (pour vérifier sous R, <code>shapiro.test()</code>)</p>
+<p>- homogénéité des variances (pour vérifier sous R, <code>var.test()</code>, <code>leveneTest()</code>)</p>
+<p>Si cela ne respecte pas ces conditions ou sur des petits échantillons, il est possible d’utiliser le <strong><a href="https://fr.wikipedia.org/wiki/Test_de_Kruskal-Wallis">test de Kruskal-Wallis</a></strong> (sous R : <em><code>kruskal.test()</code></em>) et/ou <strong>test de Friedman</strong> (sous R : <em><code>friedman.test()</code></em>), puis le test de Tukey et Kramer (Nemenyi ; sous R : <code>posthoc.kruskal.nemenyi.test()</code>).</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="sous-r-étapes-3-et-4-1" class="slide level2">
+<h2>Sous R, étapes 3 et 4</h2>
+<h3 id="test-de-student"><strong>Test de Student</strong></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sous-r-étapes-3-et-4-2" class="slide level2">
+<h2>Sous R, étapes 3 et 4</h2>
+<h3 id="analyse-de-la-variance-et-test-de-fisher-1"><strong>Analyse de la variance et test de Fisher</strong></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(var_quanti <span class="sc">~</span> var_quali, <span class="at">data=</span>my_data)</span>
+<span id="cb41-2"><a href="#cb41-2"></a></span>
+<span id="cb41-3"><a href="#cb41-3"></a><span class="fu">summary</span>(anova_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Sur l’exemple de Lagos :</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>              Df Sum Sq Mean Sq F value Pr(&gt;F)    
+LCZ            1   2951  2950.6    4572 &lt;2e-16 ***
+Residuals   6291   4060     0.6                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>La <em>p-value</em> ici est bien inférieure à 1%, <span class="math inline">\(H_0\)</span> est rejetée, il existe des différences significatives de températures entre les occupations du sol.</p>
+<p><strong>Autres possibilités</strong></p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">oneway.test</span>(var_quanti <span class="sc">~</span> var_quali,</span>
+<span id="cb43-2"><a href="#cb43-2"></a>            <span class="at">var.equal=</span><span class="cn">TRUE</span>, </span>
+<span id="cb43-3"><a href="#cb43-3"></a>            <span class="at">data=</span>my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>anova_result2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(var_quanti <span class="sc">~</span> var_quali, </span>
+<span id="cb44-2"><a href="#cb44-2"></a>                    <span class="at">data=</span>my_data)</span>
+<span id="cb44-3"><a href="#cb44-3"></a><span class="fu">summary</span>(anova_result2)</span>
+<span id="cb44-4"><a href="#cb44-4"></a><span class="fu">anova</span>(anova_result2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="post-hoc-dans-quel-sens-et-de-la-variance-expliquée" class="slide level2">
+<h2>5/ <em>Post-hoc</em> : dans quel sens et % de la variance expliquée</h2>
+<p>Pour déterminer quelles modalités diffèrent les unes des autres (comparaisons par pairs), on peut effectuer le test de <em>Tukey Honest Significant Differences</em> (sous R, <code>TukeyHSD()</code>) et de <code>pairwise.t.test()</code>.</p>
+</section></section>
+<section>
+<section id="des-questions-des-remarques-2" class="title-slide slide level1 center">
+<h1>Des questions ? <br> Des remarques ?</h1>
+
+</section>
+<section id="ressources" class="slide level2">
+<h2>Ressources</h2>
+<ul>
+<li><p>Helsel, D.R., Hirsch, R.M. (2002). <em>Statistical methods in water resources</em>. Techniques of Water Resources Investigations. (<a href="https://pubs.usgs.gov/twri/twri4a3/twri4a3.pdf">lien vers le pdf</a>)</p></li>
+<li><p>Feuillet, T., Cossart, É., &amp; Commenges, H. (2019). <em>Manuel de géographie quantitative : Concepts, outils, méthodes</em>. Armand Colin.</p></li>
+<li><p>“C’est chi2 ? Et bien c’est lui !”, Grégoire Le Campion https://ouvrir.passages.cnrs.fr/wp-content/uploads/2019/09/X2.html</p></li>
+<li><p>“Tout ce que vous n’avez jamais voulu savoir sur le χ2 sans jamais avoir eu envie de le demander”, Julien Barnier, 2008 http://cef-cfr.ca/uploads/Reference/khicarr%E92008.pdf</p></li>
+<li><p>…</p></li>
+</ul>
+
+<img src="img/eeCist_bandeau.png" class="slide-logo r-stretch"><div class="footer footer-default">
+
+</div>
+</section></section>
+
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="EXP2_statsbivar_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="EXP2_statsbivar_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="EXP2_statsbivar_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="EXP2_statsbivar_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="EXP2_statsbivar_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="EXP2_statsbivar_files/libs/revealjs/plugin/multiplex/socket.io.js"></script>
+  <script src="EXP2_statsbivar_files/libs/revealjs/plugin/multiplex/multiplex.js"></script>
+  <script src="EXP2_statsbivar_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="EXP2_statsbivar_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="EXP2_statsbivar_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="EXP2_statsbivar_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="EXP2_statsbivar_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'multiplex': {"secret":null,"id":"a800cce6396d8b85","url":"https://reveal-multiplex.glitch.me/"},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

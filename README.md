@@ -6,7 +6,7 @@
 
 Diaporama construit et présenté lors de l'école d'été du CIST 2023 "Méthodes et outils des sciences des territoires, une perspective Nord-Sud, Sud-Nord, Sud-Sud", à Ouidah (Bénin), en mars 2023.
 
-
+Et **exercice pratique** : [script R](https://github.com/mmadelin/EECIST23_EXP2/blob/main/EXP2_ExoPratique.R) à compléter
 
 
 

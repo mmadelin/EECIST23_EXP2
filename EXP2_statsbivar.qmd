@@ -1,7 +1,7 @@
 ---
 title: "."
-subtitle: " "
-author: " "
+subtitle: "."
+author: "."
 license: MIT
 title-slide-attributes:
   data-background-image: img/template_diapo_EECIST_Page1.png
@@ -120,7 +120,9 @@ head(wb) %>%
 Source : Banque Mondiale, 1990
 :::
 
-Statistiques [univariées]{style="color:#333399;"}
+::: {style="text-align: center;font-size: 1.5em;"}
+Statistiques [univariées]{style="color:#333399;"} &emsp; [&#11106; &emsp; bivariées]{style="color:white;font-weight:bold"}
+:::
 
 ## Les statistiques bivariées
 
@@ -136,7 +138,9 @@ head(wb) %>%
 Source : Banque Mondiale, 1990
 :::
 
+::: {style="text-align: center;font-size: 1.5em;"}
 Statistiques univariées &emsp; &#11106; &emsp; [bivariées]{style="color:#990033;font-weight:bold"}
+:::
 
 ## Les statistiques bivariées
 
@@ -152,7 +156,9 @@ head(wb) %>%
 Source : Banque Mondiale, 1990
 :::
 
+::: {style="text-align: center;font-size: 1.5em;"}
 Statistiques univariées &emsp; &#11106; &emsp; [bivariées]{style="color:#990033;font-weight:bold"}
+:::
 
 ## Les statistiques bivariées
 
@@ -168,7 +174,9 @@ head(wb) %>%
 Source : Banque Mondiale, 1990
 :::
 
+::: {style="text-align: center;font-size: 1.5em;"}
 Statistiques univariées &emsp; &#11106; &emsp; [bivariées]{style="color:#990033;font-weight:bold"}
+:::
 
 <br>
 
@@ -197,7 +205,7 @@ Source : Banque Mondiale, 1990
 ![](img/TypeData_CAR1.png){fig-align="center" width="500"}
 
 ::: {.source}
-Source : Cours de CAR1, Cartographie thématique & Sémiologie Graphique, EE2023
+Source : [Cours de CAR1](https://ee2023.netlify.app/modules/cart1-2_the.html), Cartographie thématique & Sémiologie Graphique, EE2023
 :::
 
 :::
@@ -336,12 +344,12 @@ Winters, J. R., Roberts, S. G., & Braiding, D. S. Chocolate Consumption, Trafﬁ
 ## Le déroulement "classique" d'une analyse de relation
 
 ::: incremental
--   observer un graphique croisant les 2 variables ou 2 cartes
--   formuler les hypothèses nulle (indépendance) et alternative
--   calculer un paramètre à partir des observations (*r*, *χ^2^*, ...)
--   le comparer à une valeur théorique (table, distribution théorique)
--   conclure sur l'**existence** d'une relation (selon un risque d'erreur) et sur son **intensité**
--   éventuellement modéliser la relation et analyse des écarts au modèle ou donner un sens à la relation
+-   observer un [graphique]{style="color:#20639B"} croisant les 2 variables ou 2 cartes
+-   formuler les [hypothèses]{style="color:#20639B"} nulle (indépendance) et alternative
+-   calculer un [paramètre]{style="color:#20639B"} à partir des observations (*r*, *χ^2^*, ...)
+-   le comparer à une [valeur théorique]{style="color:#20639B"} (table, distribution théorique)
+-   conclure sur l'**[existence]{style="color:#20639B"}** d'une relation (selon un risque d'erreur) et sur son **[intensité]{style="color:#20639B"}**
+-   éventuellement [modéliser]{style="color:#20639B"} la relation et analyse des [écarts au modèle]{style="color:#20639B"} ou donner un [sen]{style="color:#20639B"}s à la relation
 -   (parfois conditions d'application en amont ou en aval)
 :::
 
@@ -374,6 +382,15 @@ Wikimedia Commons, CC BY-SA 4.0
 
 -   [Relation entre une variable quantitative et une qualitative Qn-Ql]{style="color:#697A6C;font-weight:bold"} <br> ex : températures de surface et occupation du sol à Lagos
 
+
+. . . 
+
+<br>
+<br>
+
+::: {style="color: #20639B; background-color: #86aac8; text-align: center ; font-size: 1.5em; padding: 5px; max-width: 300px; margin: auto;"}
+p'tit sondage
+:::
 
 
 # \[Qn-Qn\] <br> Relation entre deux variables quantitatives {background-image="img/template_diapo_EECIST_partie.png" background-size="cover"}
@@ -445,7 +462,7 @@ et selon la longitude ? ou encore l'altitude ?
 
 ## 1/ Graphique cartésien (nuage de points) pour avoir une idée de l'intensité et du sens de la relation
 
-::: {.etapes}
+::: {.etapes2}
 **Nuage de points** &emsp; [&#11106; &emsp; Hypothèses &emsp; &#11106; &emsp; Calcul du *r* &emsp; &#11106; &emsp; Significativité &emsp; &#11106; &emsp; Modélisation]{style="opacity:0.25"} 
 :::
 
@@ -521,7 +538,7 @@ Comment interprétez-vous ces 3 graphiques ?
 
 ## 2/ Formulation des hypothèses
 
-::: {.etapes}
+::: {.etapes2}
 [Nuage de points &emsp; &#11106; &emsp;]{style="opacity:0.25"} **Hypothèses** &emsp; [&#11106; &emsp; Calcul du *r* &emsp; &#11106; &emsp; Significativité &emsp; &#11106; &emsp; Modélisation]{style="opacity:0.25"} 
 :::
 
@@ -553,7 +570,7 @@ Il s'agit à présent de confirmer ou d'infirmer l'hypothèse H~0~.
 
 ## 3/ Calcul d'un coefficient de corrélation
 
-::: {.etapes}
+::: {.etapes2}
 [Nuage de points &emsp; &#11106; &emsp; Hypothèses &emsp; &#11106;]{style="opacity:0.25"} &emsp; **Calcul du *r* ** &emsp; [&#11106; &emsp; Significativité &emsp; &#11106; &emsp; Modélisation]{style="opacity:0.25"} 
 :::
 
@@ -573,7 +590,7 @@ Extrait et adapté d'une illustration de Wikimedia Commons, DenisBoigelot, CC0
 
 ## 3/ Calcul d'un coefficient de corrélation
 
-::: {.etapes}
+::: {.etapes2}
 [Nuage de points &emsp; &#11106; &emsp; Hypothèses &emsp; &#11106;]{style="opacity:0.25"} &emsp; **Calcul du *r* ** &emsp; [&#11106; &emsp; Significativité &emsp; &#11106; &emsp; Modélisation]{style="opacity:0.25"} 
 :::
 
@@ -614,7 +631,7 @@ Il s'agit ensuite de vérifier la **significativité** de ces relations, pour co
 
 ## 4/ Vérification de la significativité
 
-::: {.etapes}
+::: {.etapes2}
 [Nuage de points &emsp; &#11106; &emsp; Hypothèses &emsp; &#11106; &emsp; Calcul du *r*  &emsp; &#11106;]{style="opacity:0.25"} &emsp; **Significativité** &emsp; [&#11106; &emsp; Modélisation]{style="opacity:0.25"} 
 :::
 
@@ -645,7 +662,7 @@ Avec l'altitude, la relation est plus faible. Elle est non significative avec un
 
 ## 5/ Modélisation de la relation et analyse des résidus
 
-::: {.etapes}
+::: {.etapes2}
 [Nuage de points &emsp; &#11106; &emsp; Hypothèses &emsp; &#11106; &emsp; Calcul du *r*  &emsp; &#11106; &emsp; Significativité &emsp; &#11106;]{style="opacity:0.25"} &emsp; **Modélisation** 
 :::
 
@@ -672,7 +689,9 @@ D'après le modèle construit, les précipitations moyennes annuelles seraient d
 plot(preci$preci_Y_5180 ~ preci$latitude) 
 abline(lm(preci$preci_Y_5180 ~ preci$latitude))
 ```
-Le modèle Préci~Lat a un coefficient $r$ de `r round(cor(preci$preci_Y_5180, preci$latitude), 2)`, donc un coefficient de détermination $r^2$ de `r round(cor(preci$preci_Y_5180, preci$latitude)^2, 2)` : `r round(100*cor(preci$preci_Y_5180, preci$latitude)^2, 0)`% de la variation des précipitations sont liées à la latitude.
+
+
+[Le modèle Préci~Lat a un coefficient $r$ de `r round(cor(preci$preci_Y_5180, preci$latitude), 2)`, donc un coefficient de détermination $r^2$ de `r round(cor(preci$preci_Y_5180, preci$latitude)^2, 2)` : `r round(100*cor(preci$preci_Y_5180, preci$latitude)^2, 0)`% de la variation des précipitations sont liées à la latitude.]{style="font-size: 0.9em;"}
 :::
 :::
 
@@ -1007,7 +1026,7 @@ Qu'en déduisez-vous ?
 #| fig-width: 6
 #| fig-height: 6
 
-mosaicplot(produit ~ transport, data = bouake,
+mosaicplot(produit ~ transport, data = bouake, color = TRUE,
            main = "Mosaic plot de Bouaké")
 ```
 
@@ -1147,7 +1166,7 @@ resu_chi2$expected
 
 ::: {.column}
 
-et les écarts à l'indépendance :
+et les écarts à l'indépendance (standardisés) :
 
 ```{r}
 resu_chi2$residuals
@@ -1160,13 +1179,14 @@ resu_chi2$residuals
 Il est possible de colorier les rectangles d'un graphique en mosaïque en fonction du degré de relation entre les variables : le [bleu]{style="color:blue"} représente plus de cas que prévu étant donné l'indépendance, le [rouge ]{style="color:red"} représente moins de cas que prévu.
 
 ```{r}
-mosaicplot(produit ~ transport, data = bouake, shade = TRUE)
+mosaicplot(transport ~ produit, data = bouake, 
+           main = "Relation entre types de produit et modes de transport des entrées au marché de Bouaké", shade = TRUE)
 ```
 
 ## Pour aller plus loin, quelle est l'intensité de la relation ?
 
 
-A compléter... avec ex
+A compléter... 
 
 $$V_{Cramer} = \sqrt{\frac{\chi^2}{n.ddl}} $$
 
@@ -1360,7 +1380,7 @@ d'une relation entre LST et LCZ ?
 
 - variable qualitative à 2 modalités : test du Student (comparaison de moyenne)
 
-- variable Ql à + de 2 modalités : analyse de la variance et test de Fisher
+- variable Ql à 2 ou + modalités : analyse de la variance et test de Fisher
 
 Les deux reposant sur les mêmes étapes : 
 
@@ -1649,7 +1669,7 @@ avec $D = X_A - X_B$
 :::
 
 ## 
-### Avec une Ql à + de 2 modalités : **analyse de la variance et test de Fisher** (F)
+### Avec une Ql à 2 modalités ou + : **analyse de la variance et test de Fisher** (F)
 
 - **Décomposition de la variance**
 
@@ -1692,6 +1712,7 @@ $$F = \frac{\frac{var.intERclasse}{k-1}}{\frac{var.intRAclasse}{n-k}} \sim F_{k-
 
 ### **Test de Student** [non finalisé]
 
+::: {style="color:gray; font-size:14px;"}
 Soit T \~\> t (nA-nB-2),
 
 toujours se ramener à P (T \< t)
@@ -1699,6 +1720,7 @@ toujours se ramener à P (T \< t)
 Pour unilatéral : P (T \< t) = 1 - a
 
 Pour bilatéral : P (T \< t) = 1 - (a/2)
+:::
 
 ::: callout-warning
 ## Conditions d'application
@@ -1799,12 +1821,43 @@ Pour déterminer quelles modalités diffèrent les unes des autres (comparaisons
 
 # Des questions ? <br> Des remarques ?
 
+## Pour aller plus loin... pistes possibles
+
+::: incremental
+
+- transformation d'une variable Qn en Ql
+
+- Qn-Qn : relation puissance, relation exponentielle
+
+- tests paramétriques
+
+- puissance
+
+- variables particulières à expliquer : temporel, distance, territorial
+
+- ...
+
+:::
+
+##
+
+![](img/quellemethode.png){fig-align="center" }
+
+::: {.source}
+Howell, Méthodes statistiques en Sciences Humaines
+:::
+
+
 ## Ressources 
 
 
 - Helsel, D.R., Hirsch, R.M. (2002). *Statistical methods in water resources*. Techniques of Water Resources Investigations. ([lien vers le pdf](https://pubs.usgs.gov/twri/twri4a3/twri4a3.pdf))
 
+- Vigneron, E. (1997). *Géographie et Statistiques*. PUF Coll. Que sais-je ?, n°3177. 
+
 - Feuillet, T., Cossart, É., & Commenges, H. (2019). *Manuel de géographie quantitative : Concepts, outils, méthodes*. Armand Colin. 
+
+- Denis, DJ. (2020). *Univariate, bivariate, and multivariate statistics using R: quantitative tools for data analysis and data science*. Wiley: Hoboken, NJ. 
 
 - "C’est chi2 ? Et bien c’est lui !", Grégoire Le Campion
 https://ouvrir.passages.cnrs.fr/wp-content/uploads/2019/09/X2.html

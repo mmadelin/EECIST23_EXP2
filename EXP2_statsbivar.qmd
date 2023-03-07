@@ -842,7 +842,17 @@ knitr::kable(head(bouake, 10))
 
 ::: columns
 ::: column
-```{r, echo=c(1,2)}
+
+
+```{r eval=FALSE}
+ggplot(bouake, 
+       aes(x = produit, 
+           fill = transport)) +
+  geom_bar(position = "stack") 
+
+```
+
+```{r echo=FALSE}
 ggplot(bouake, 
        aes(x = produit, 
            fill = transport)) +
@@ -850,16 +860,25 @@ ggplot(bouake,
   geom_bar(position = "stack") 
 
 ```
+
 :::
 
 ::: column
-```{r}
+```{r eval=FALSE}
+ggplot(bouake, 
+       aes(x = transport, 
+           fill = produit)) + 
+  geom_bar(position = "stack")
+```
+
+```{r echo=FALSE}
 ggplot(bouake, 
        aes(x = transport, 
            fill = produit)) + 
   theme(text = element_text(size = 30)) +
   geom_bar(position = "stack")
 ```
+
 :::
 :::
 
@@ -1001,7 +1020,7 @@ Le graphique en mosaïque (ou le graphique Marimekko / Mekko) représente la pro
 
 ::: columns
 ::: {.column width="40%"}
-Sous R (base)^[1. C'est également possible avec [ggmosaic](https://cran.r-project.org/web/packages/ggmosaic/vignettes/ggmosaic.html) pour ggplot.] : 
+Sous R (base)^[C'est également possible avec [ggmosaic](https://cran.r-project.org/web/packages/ggmosaic/vignettes/ggmosaic.html) pour ggplot.] : 
 ```{r}
 #| eval: false 
 mosaicplot(produit ~ transport, 
@@ -1180,7 +1199,8 @@ Il est possible de colorier les rectangles d'un graphique en mosaïque en foncti
 
 ```{r}
 mosaicplot(transport ~ produit, data = bouake, 
-           main = "Relation entre types de produit et modes de transport des entrées au marché de Bouaké", shade = TRUE)
+           main = "Relation entre types de produit et modes de transport des entrées au marché de Bouaké", 
+           shade = TRUE)
 ```
 
 ## Pour aller plus loin, quelle est l'intensité de la relation ?

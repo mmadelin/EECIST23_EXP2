@@ -15,11 +15,11 @@ format:
     # smaller: true 
     scrollable: true
     multiplex: true
-    code-line-numbers: true
+    code-line-numbers: false
     code-copy: true
     code-tools: true
-    # code-block-bg: true   
-    # code-block-border-left: "#9b2063" 
+    code-block-bg: true   
+    code-block-border-left: "#9b2063"
     highlight-style: breeze
 
 execute:
@@ -56,26 +56,16 @@ library(leaflet)
 
 <br>
 
-. . .
-
-Objectifs lors de l'atelier de l'EE2022 : 
-
-![](img/Obj_EE2022.png){fig-align="left" width="500" .imgborder}
 
 
 ## Les conditions envisagées
 
-- entre 10h et 60h
+- entre 3h (rappels théoriques) et 30h
 
 - cours théorique s'appuyant sur des exemples d'application
 
 - séances pratiques sous R
 
-. . . 
-
-Lors de l'atelier de l'EE2022 :
-
-![](img/Timing_EE2022.png){fig-align="left" width="400" .imgborder}
 
 
 # Contenu du cours <br> [à moduler selon le temps dédié au cours]{style="font-size:36px"}{background-image="img/template_diapo_EECIST_partie.png" background-size="cover"}
@@ -216,19 +206,19 @@ Source : [Cours de CAR1](https://ee2023.netlify.app/modules/cart1-2_the.html), C
 ## Quizz
 En imaginant un tableau élémentaire avec nous comme individus (une ligne par personne), donnez un exemple 
 
-de variable qualitative ? 
+- de variable qualitative ? 
 
-de variable quantitative absolue (de stock) ? 
+- de variable quantitative absolue (de stock) ? 
 
-de variable quantitative relative ? 
+- de variable quantitative relative ? 
 
-de variable qualitative ordinale ?   
+- de variable qualitative ordinale ?   
 :::
 
 :::
 :::
 
-# Analyse d'une relation {background-color="#CAF2F5"}
+# Analyse d'une relation {background-image="img/template_diapo_EECIST_partie.png" background-size="cover"}
 
 
 ## Différentes analyses 2 à 2, selon les types de variables 
@@ -283,24 +273,24 @@ Source : Banque Mondiale, 1990
 
 ## Relation statistique et causalité
  
-Relation statistique : déterminer si la variation d'une variable "dépend" / est fonction de la variation d'une autre
+Relation statistique : déterminer si la variation d'une variable « dépend » / est fonction de la variation d'une autre.
 
-[Attention :]{style="color:red"} la mise en évidence d'une relation ne signifie pas l'identification d'une cause et de son effet, elle signale seulement une co-variation, qu'il reste à interpréter
+[Attention :]{style="color:red"} la mise en évidence d'une relation ne signifie pas l'identification d'une cause et de son effet, elle signale seulement une co-variation, qu'il reste à interpréter.
 
 ## Relation statistique et causalité
  
-Relation statistique : déterminer si la variation d'une variable "dépend" / est fonction de la variation d'une autre
+Relation statistique : déterminer si la variation d'une variable "dépend" / est fonction de la variation d'une autre.
 
-[Attention :]{style="color:red"} la mise en évidence d'une relation ne signifie pas l'identification d'une cause et de son effet, elle signale seulement une co-variation, qu'il reste à interpréter
+[Attention :]{style="color:red"} la mise en évidence d'une relation ne signifie pas l'identification d'une cause et de son effet, elle signale seulement une co-variation, qu'il reste à interpréter.
 
 
 ![](img/soleil1.png){fig-align="center" width=450}
 
 ## Relation statistique et causalité
  
-Relation statistique : déterminer si la variation d'une variable "dépend" / est fonction de la variation d'une autre
+Relation statistique : déterminer si la variation d'une variable "dépend" / est fonction de la variation d'une autre.
 
-[Attention :]{style="color:red"} la mise en évidence d'une relation ne signifie pas l'identification d'une cause et de son effet, elle signale seulement une co-variation, qu'il reste à interpréter
+[Attention :]{style="color:red"} la mise en évidence d'une relation ne signifie pas l'identification d'une cause et de son effet, elle signale seulement une co-variation, qu'il reste à interpréter.
 
 
 ![](img/soleil2.png){fig-align="center"  width=450}
@@ -339,7 +329,9 @@ Winters, J. R., Roberts, S. G., & Braiding, D. S. Chocolate Consumption, Trafﬁ
 :::
 :::
 
-[erreur écologique ici ou plus tard ? <br> et erreur atomiste]{style="color:red"}
+. . .
+
+[Erreur écologique / erreur atomiste]{style="color:#c4327e"}
 
 ## Le déroulement "classique" d'une analyse de relation
 
@@ -348,12 +340,12 @@ Winters, J. R., Roberts, S. G., & Braiding, D. S. Chocolate Consumption, Trafﬁ
 -   formuler les [hypothèses]{style="color:#20639B"} nulle (indépendance) et alternative
 -   calculer un [paramètre]{style="color:#20639B"} à partir des observations (*r*, *χ^2^*, ...)
 -   le comparer à une [valeur théorique]{style="color:#20639B"} (table, distribution théorique)
--   conclure sur l'**[existence]{style="color:#20639B"}** d'une relation (selon un risque d'erreur) et sur son **[intensité]{style="color:#20639B"}**
--   éventuellement [modéliser]{style="color:#20639B"} la relation et analyse des [écarts au modèle]{style="color:#20639B"} ou donner un [sen]{style="color:#20639B"}s à la relation
+-   conclure sur l'[existence]{style="color:#20639B"} d'une relation (selon un risque d'erreur) et sur son [intensité]{style="color:#20639B"}
+-   éventuellement [modéliser]{style="color:#20639B"} la relation et analyse des [écarts au modèle]{style="color:#20639B"} ou donner un [sens]{style="color:#20639B"} à la relation
 -   (parfois conditions d'application en amont ou en aval)
 :::
 
-## Risques d'erreur / p-value
+## Risques d'erreur / *p-value*
 
 ![](img/Tableau_hypotheses.png){fig-align="center" width=800}
 
@@ -364,11 +356,6 @@ Wikimedia Commons, CC BY-SA 4.0
 ![](img/Courbe_Khi2.png){fig-align="center" width=600}
 
 
-
-
-## Tests paramétriques ou non
-
-...
 
 ## Applications à partir de plusieurs exemples
 
@@ -383,14 +370,7 @@ Wikimedia Commons, CC BY-SA 4.0
 -   [Relation entre une variable quantitative et une qualitative Qn-Ql]{style="color:#697A6C;font-weight:bold"} <br> ex : températures de surface et occupation du sol à Lagos
 
 
-. . . 
 
-<br>
-<br>
-
-::: {style="color: #20639B; background-color: #86aac8; text-align: center ; font-size: 1.5em; padding: 5px; max-width: 300px; margin: auto;"}
-p'tit sondage
-:::
 
 
 # \[Qn-Qn\] <br> Relation entre deux variables quantitatives {background-image="img/template_diapo_EECIST_partie.png" background-size="cover"}
@@ -460,7 +440,7 @@ et selon la longitude ? ou encore l'altitude ?
 :::
 
 
-## 1/ Graphique cartésien (nuage de points) pour avoir une idée de l'intensité et du sens de la relation
+## 1/ Graphique cartésien (nuage de points) pour avoir une idée de la forme, de l'intensité et du sens de la relation
 
 ::: {.etapes2}
 **Nuage de points** &emsp; [&#11106; &emsp; Hypothèses &emsp; &#11106; &emsp; Calcul du *r* &emsp; &#11106; &emsp; Significativité &emsp; &#11106; &emsp; Modélisation]{style="opacity:0.25"} 
@@ -468,9 +448,27 @@ et selon la longitude ? ou encore l'altitude ?
 
 ![](img/Sens_Forme_Intensite.png){fig-align="left"}
 
-Intensité, forme, sens
+::: columns
+::: {.column width="40%"}
+absence de relation
+:::
 
-[Non finalisé]{style="color:red"}
+::: {.column width="38%" }
+relation positive
+
+linéaire
+
+intensité moyenne
+:::
+
+::: {.column width="22%"}
+relation négative
+
+non linéaire
+
+intensité forte
+:::
+:::
 
 
 
@@ -624,9 +622,9 @@ Le coefficient *r* est plus élevé, en valeur absolue (indépendamment du signe
 Il s'agit ensuite de vérifier la **significativité** de ces relations, pour conclure à leur existence.
 :::
 
-[Non finalisé. Les autres coeff ici ou + tard ?]{style="color:red"}
+. . .
 
-`method = "pearson"`, `method = "kendall"`, `method = "spearman"`
+Par défaut, il s'agit du test de Bravais Pearson (`method = "pearson"`), mais il est possible de mesurer la corrélation de rang (`method = "kendall"`, `method = "spearman"`).
 
 
 ## 4/ Vérification de la significativité
@@ -637,7 +635,7 @@ Il s'agit ensuite de vérifier la **significativité** de ces relations, pour co
 
 ![](img/Correl.png){fig-align="left"}
 
-[Non finalisé]
+À gauche, on constate une absence de relation ; à droite une corrélation parfaite (négative). Entre ces deux situations, à partir de quand la relation est-elle **significative** ?
 
 ##
 Sous R : 
@@ -681,7 +679,7 @@ lm_result
 ## Lecture
 Les deux coefficients affichés sont l'ordonnée à l'origine (*b* ; ici [(Intercept)]) et la pente (*a*) de l'équation $y = a.x + b$.
 
-D'après le modèle construit, les précipitations moyennes annuelles seraient d'environ `r round(lm_result$coefficients[1], -1)`mm à l'équateur, c'est-à-dire à la latitude de 0°. Elles diminueraient de `r abs(round(lm_result$coefficients[2], 0))`mm à chaque degré de latitude vers le nord.
+D'après le modèle construit, les précipitations moyennes annuelles seraient d'environ `r round(lm_result$coefficients[1], -1)` mm à l'équateur, c'est-à-dire à la latitude de 0°. Elles diminueraient de `r abs(round(lm_result$coefficients[2], 0))` mm à chaque degré de latitude vers le nord.
 :::
 :::
 ::: {.column}
@@ -691,16 +689,16 @@ abline(lm(preci$preci_Y_5180 ~ preci$latitude))
 ```
 
 
-[Le modèle Préci~Lat a un coefficient $r$ de `r round(cor(preci$preci_Y_5180, preci$latitude), 2)`, donc un coefficient de détermination $r^2$ de `r round(cor(preci$preci_Y_5180, preci$latitude)^2, 2)` : `r round(100*cor(preci$preci_Y_5180, preci$latitude)^2, 0)`% de la variation des précipitations sont liées à la latitude.]{style="font-size: 0.9em;"}
+[Le modèle Préci~Lat a un coefficient $r$ de `r round(cor(preci$preci_Y_5180, preci$latitude), 2)`, donc un coefficient de détermination $r^2$ de `r round(cor(preci$preci_Y_5180, preci$latitude)^2, 2)` : `r round(100*cor(preci$preci_Y_5180, preci$latitude)^2, 0)`% de la variation des précipitations est liée à la latitude.]{style="font-size: 0.9em;"}
 :::
 :::
 
 ##
 ### Analyse des résidus
 
-analyse très importante des résidus et de leur répartition spatiale =\> reflet de spécificités locales et/ou importance d'autres fact. explicatifs
+Analyse très importante des résidus et de leur répartition spatiale =\> reflet de spécificités locales et/ou importance d'autres facteurs explicatifs
 
-=> en l'occurrence, ici, pas top !
+=> en l'occurrence, ici, pas top ! On constate une non homoscédasticité des résidus : la variance des résidus n'est pas constante selon la latitude (variable explicative).
 
 
 ```{r echo=FALSE}
@@ -743,9 +741,19 @@ Sources : NOAA GHCN, OpenStreetMap, SRTM, OpenTopoMap (CC-BY-SA)
 Pour au moins une des 2 variables, distribution normale et variance constante...
 :::
 
-[non finalisé]
+
+##
 
 
+:::  {}
+
+![](https://imgs.xkcd.com/comics/extrapolating.png){width=75% fig-align="center"}
+
+:::
+
+::: {.source}
+Source : xkcd (https://xkcd.com/605/)
+:::
 
 
 # Des questions ? <br> Des remarques ?
@@ -1206,8 +1214,6 @@ mosaicplot(transport ~ produit, data = bouake,
 ## Pour aller plus loin, quelle est l'intensité de la relation ?
 
 
-A compléter... 
-
 $$V_{Cramer} = \sqrt{\frac{\chi^2}{n.ddl}} $$
 
 Plus le $V_{Cramer}$ tend vers 1, plus la relation est forte. Plus c'est vers 0, plus elle est faible.
@@ -1642,21 +1648,21 @@ H~0~ (hypothèse nulle) : indépendance entre les 2 variables
 
 H~1~ (hypothèse alternative) : non indépendance
 
-. . .
 
-::: {.callout-note appearance="minimal" icon="FALSE"}
+
+::: {.callout-note appearance="minimal" icon="FALSE" .fragment}
 Pour Lagos,
 
 H~0~ : indépendance entre températures de surface et types morphologiques
 
-H~1~ : il existe une relation entre le mode de transport et le type de produit
+H~1~ : il existe une relation entre températures de surface et types morphologiques
 :::
 
-. . .
+
 
 <br> 
 
-::: {.message}
+::: {.message .fragment}
 Il s'agit à présent de confirmer ou d'infirmer l'hypothèse H~0~.
 ::: 
 
@@ -1677,7 +1683,6 @@ Il s'agit à présent de confirmer ou d'infirmer l'hypothèse H~0~.
 
 $$T=\frac{\bar X_A - \bar X_B }{\sqrt{(n_A.\sigma_A^2 + n_B.\sigma_B^2)(\frac{1}{n_A}+\frac{1}{n_B})} }.{\sqrt{(n_A + n_B-2)}}\sim t_{n_A + n_B-2}$$
 
-. . .
 
 - **Échantillons appariés**
 (ex : à 2 dates différentes)
@@ -1702,12 +1707,12 @@ $$\sum_{i=1}^{n}(X_i-\bar X)^2 =  \sum_{g=1}^{k}(\bar X_g - \bar X)^2 +  \sum_{g
 
 ::: {.r-stack}
 
-![](img/Var_totale.png){fig-align="center" .fragment}
+![](img/Var_totale.png){fig-align="center" .fragment width="80%"}
 
 
-![](img/Var_interclasse.png){fig-align="center" .fragment}
+![](img/Var_interclasse.png){fig-align="center" .fragment width="80%"}
 
-![](img/Var_intraclasse.png){fig-align="center" .fragment}
+![](img/Var_intraclasse.png){fig-align="center" .fragment width="80%"}
 
 :::
 
@@ -1717,7 +1722,18 @@ D'après Helsel, D.R., Hirsch, R.M. (2002). *Statistical methods in water resour
 
 ## 
 
-- **Calcul du F observé (["rapport de corrélation"]{style="color:red"})**
+### Avec une Ql à 2 modalités ou + : **analyse de la variance et test de Fisher** (F)
+
+- **Décomposition de la variance**
+
+Variance totale = Variance int**[er]{style="color:red"}**classes (expliquée) + Variance int**[ra]{style="color:red"}**classes (résiduelle) 
+
+
+$$\sum_{i=1}^{n}(X_i-\bar X)^2 =  \sum_{g=1}^{k}(\bar X_g - \bar X)^2 +  \sum_{g=1}^{k}\sum_{i=1}^{n_g}(X_i-\bar X_g)^2 $$ 
+
+[la variable quantitative (à expliquer) : $X_i$ ; les modalités de la variable qualitative de $g = 1$ à $k$.]{style="font-size:16px"}
+
+- **Calcul du F observé ("rapport de corrélation")**
 
 $$F = \frac{\frac{var.intERclasse}{k-1}}{\frac{var.intRAclasse}{n-k}} \sim F_{k-1,n-k}$$
 
@@ -1727,35 +1743,33 @@ $$F = \frac{\frac{var.intERclasse}{k-1}}{\frac{var.intRAclasse}{n-k}} \sim F_{k-
 [Graphique (boxplot) &emsp; &#11106; &emsp; Hypothèses &emsp; &#11106; &emsp; Calcul du T ou F observé &emsp; &#11106;]{style="opacity:0.25"} &emsp; **Significativité** &emsp; [&#11106; &emsp; Sens]{style="opacity:0.25"} 
 :::
 
-<br> 
 
 
-### **Test de Student** [non finalisé]
+<!-- ### **Test de Student** [non finalisé] -->
 
-::: {style="color:gray; font-size:14px;"}
-Soit T \~\> t (nA-nB-2),
+<!-- ::: {style="color:gray; font-size:14px;"} -->
+<!-- Soit T \~\> t (nA-nB-2), -->
 
-toujours se ramener à P (T \< t)
+<!-- toujours se ramener à P (T \< t) -->
 
-Pour unilatéral : P (T \< t) = 1 - a
+<!-- Pour unilatéral : P (T \< t) = 1 - a -->
 
-Pour bilatéral : P (T \< t) = 1 - (a/2)
-:::
+<!-- Pour bilatéral : P (T \< t) = 1 - (a/2) -->
+<!-- ::: -->
 
-::: callout-warning
-## Conditions d'application
-Le test de Student est un test **paramétrique**, qui doit respecter plusieurs conditions :  
+<!-- ::: callout-warning -->
+<!-- ## Conditions d'application -->
+<!-- Le test de Student est un test **paramétrique**, qui doit respecter plusieurs conditions :   -->
 
-\- distribution normale de la variable quantitative dans les classes de la variable qualitative (pour vérifier sous R, `shapiro.test()`)
+<!-- \- distribution normale de la variable quantitative dans les classes de la variable qualitative (pour vérifier sous R, `shapiro.test()`) -->
 
-\- homogénéité des variances (pour vérifier sous R, `var.test()`, `leveneTest()`)
-
-
-Si cela ne respecte pas ces conditions ou sur des petits échantillons, il est possible d'utiliser le **[test de Wilcoxon-Mann-Whitney](https://fr.wikipedia.org/wiki/Test_de_Wilcoxon-Mann-Whitney)** (sous R : *`wilcox.test()`*) pour 2 échantillons indépendants et le **[test de Kruskal-Wallis](https://fr.wikipedia.org/wiki/Test_de_Kruskal-Wallis)** (sous R : *`kruskal.test()`*) pour 2 appariés.
-:::
+<!-- \- homogénéité des variances (pour vérifier sous R, `var.test()`, `leveneTest()`) -->
 
 
-##
+<!-- Si cela ne respecte pas ces conditions ou sur des petits échantillons, il est possible d'utiliser le **[test de Wilcoxon-Mann-Whitney](https://fr.wikipedia.org/wiki/Test_de_Wilcoxon-Mann-Whitney)** (sous R : *`wilcox.test()`*) pour 2 échantillons indépendants et le **[test de Kruskal-Wallis](https://fr.wikipedia.org/wiki/Test_de_Kruskal-Wallis)** (sous R : *`kruskal.test()`*) pour 2 appariés. -->
+<!-- ::: -->
+
+
 ### **Analyse de la variance et test de Fisher**
 
 Pour risque d'erreur $\alpha$ fixé et avec un degré de liberté $ddl = (k-1).(p-1)$ :
@@ -1764,11 +1778,8 @@ Pour risque d'erreur $\alpha$ fixé et avec un degré de liberté $ddl = (k-1).(
 
 -   si $F observé < F table$, alors on ne peut rejeter H~0~, on ne peut conclure à l'existence d'une relation
 
-<br>
 
-. . .
-
-::: callout-warning
+::: callout-warning 
 
 ## Conditions d'application
 L'analyse de la variance / test de Fisher est un test **paramétrique**, qui doit respecter plusieurs conditions :  
@@ -1781,14 +1792,14 @@ Si cela ne respecte pas ces conditions ou sur des petits échantillons, il est p
 :::
 
 
-## Sous R, étapes 3 et 4
+<!-- ## Sous R, étapes 3 et 4 -->
 
-### **Test de Student** 
+<!-- ### **Test de Student**  -->
 
-```{r eval=FALSE}
-...
+<!-- ```{r eval=FALSE} -->
+<!-- ... -->
 
-```
+<!-- ``` -->
 
 
 ## Sous R, étapes 3 et 4
@@ -1849,11 +1860,11 @@ Pour déterminer quelles modalités diffèrent les unes des autres (comparaisons
 
 - Qn-Qn : relation puissance, relation exponentielle
 
-- tests paramétriques
+- tests paramétriques et non paramétriques
 
 - puissance
 
-- variables particulières à expliquer : temporel, distance, territorial
+- variables particulières explicatives : temporel, distance, territorial
 
 - ...
 
